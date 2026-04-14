@@ -22,7 +22,7 @@ public class ConveyorBelt : MonoBehaviour
         {
             if (collision.relativeVelocity.magnitude > maxForce)
             {
-                Debug.Log(collision.relativeVelocity.magnitude);
+                // Debug.Log(collision.relativeVelocity.magnitude);
                 return;
             }
             if (moveLeft)

@@ -4,11 +4,14 @@ public class CapsuleScript : MonoBehaviour
 {
     private Vector3 _startPos;
 
+    [SerializeField] private ItemSO item;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _startPos = transform.position;
+        spriteRenderer.sprite = item.sprite;
     }
 
     // Update is called once per frame

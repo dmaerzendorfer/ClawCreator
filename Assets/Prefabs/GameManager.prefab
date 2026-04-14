@@ -48,6 +48,7 @@ MonoBehaviour:
   dropInPoint: {fileID: 987201047576887738}
   characterPrefab: {fileID: 1917203653742018618, guid: 4661200ab72a40d4791dd063797c5aa4, type: 3}
   crowdManager: {fileID: 0}
+  currentCharacter: {fileID: 0}
 --- !u!1 &8227963458643100999
 GameObject:
   m_ObjectHideFlags: 0
