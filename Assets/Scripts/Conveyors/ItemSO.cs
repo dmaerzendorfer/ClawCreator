@@ -4,11 +4,13 @@ using UnityEngine;
 public class ItemSO : ScriptableObject
 {
     public Sprite sprite;
-    public GameObject prefab;
+    public Mesh mesh;
+    public Material material;
     public EquipmentType equipmentType;
 }
 
-public enum EquipmentType {
+public enum EquipmentType
+{
     Headwear,
     Eyes,
     Nose,

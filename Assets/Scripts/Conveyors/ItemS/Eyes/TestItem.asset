@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5d7565bf67673f409c67bea38049c9c, type: 3}
-  m_Name: WonkyEyes
+  m_Name: TestItem
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  prefab: {fileID: 0}
-  equipmentType: 1
+  sprite: {fileID: 21300000, guid: 937acf3ca7a85d6438e116fe5847bb9d, type: 3}
+  mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  material: {fileID: 2100000, guid: d8080afcdc53ad548aa0d93f9ac1de2e, type: 2}
+  equipmentType: 3

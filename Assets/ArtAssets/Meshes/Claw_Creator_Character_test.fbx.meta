@@ -3,7 +3,42 @@ guid: 47fcc78a79804a94aa406022c38d3e79
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Eyes_01
+    second: {fileID: 2100000, guid: 38f99e70de83a3e4d86e2aae3b70d302, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Mouth_01
+    second: {fileID: 2100000, guid: ce351a3a6b3c78749a675130552612bd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.005
+    second: {fileID: 2100000, guid: 78f3f9d671828204c93a3f43852a0cfc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.006
+    second: {fileID: 2100000, guid: 415cb0d335c0efc4fa6d5fa41858e6ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.007
+    second: {fileID: 2100000, guid: 2bc65118ddb602e44aa3b11f76224c20, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.008
+    second: {fileID: 2100000, guid: a2adb87c54284c7459012a721c97246f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Orange
+    second: {fileID: 2100000, guid: d8080afcdc53ad548aa0d93f9ac1de2e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
