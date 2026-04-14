@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: df666ecd174224ef78b61fd74f134eca
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 259777
+  packageName: URP Toon Shader
+  packageVersion: 1.1.0
+  assetPath: Assets/CiroContinisio/ToonShader/Example/Materials/Lightmapped.mat
+  uploadId: 895622

@@ -25,6 +25,8 @@ public class Character : MonoBehaviour
     public Transform head;
     public Transform lookAtTarget;
 
+    public CharacterAvoidance avoidance;
+
     public float walkDuration = 1f;
 
     public TweenSettings<Vector3> popFeedbackSettings;
@@ -43,12 +45,14 @@ public class Character : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         _gameManager = GameManager.GetInstance();
+        avoidance.enableAvoidance = false;
     }
 
     public void MoveTo(Vector3 worldPos, Action onComplete)
     {
+        transform.LookAt(worldPos);
         Tween.RigidbodyMovePosition(_rigidbody, worldPos, walkDuration, Ease.InOutSine)
-            .OnUpdate(target: this, (t, tween) => { transform.LookAt(worldPos); }).OnComplete(() =>
+            .OnComplete(() =>
             {
                 // Rotate the Rigidbody so the character faces the GameManager but only on the Y axis (yaw)
                 Vector3 direction = _gameManager.transform.position - transform.position;
@@ -60,18 +64,15 @@ public class Character : MonoBehaviour
                     // Zero out pitch and roll to ensure rotation only on Y
                     targetRotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
 
-                    // Use Rigidbody.MoveRotation for physics-friendly immediate rotation
-                    _rigidbody.MoveRotation(targetRotation);
-
-                    // Also set transform.rotation to keep transform in sync
                     transform.rotation = targetRotation;
                 }
 
                 shouldLookAtTarget = true;
                 onComplete?.Invoke();
+                //after 2sec of reaching the target this character starts avoiding
+                Tween.Custom(0f, 1f, 2f, f => { }).OnComplete(() => { avoidance.enableAvoidance = true; });
             });
     }
-
 
     [Button]
     public void TestItem()
@@ -83,7 +84,7 @@ public class Character : MonoBehaviour
     {
         if (_popTween.isAlive) _popTween.Complete();
         _popTween = Tween.Scale(transform, popFeedbackSettings);
-        
+
         switch (item.equipmentType)
         {
             case EquipmentType.Eyes:

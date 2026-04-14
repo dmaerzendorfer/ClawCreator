@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2476817348279213187}
   - component: {fileID: 6196957412985657082}
   - component: {fileID: 7512323743814408155}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SM_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1200905972847978981}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 6257191877559540920}
   - component: {fileID: 6233124788007009855}
   - component: {fileID: 6481009122194278371}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SM_Mouth Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 7149880752770980208}
   - component: {fileID: 153367429222984971}
   - component: {fileID: 3755284200092091111}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SM_Eyes Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 2056779850990556201}
   - component: {fileID: 6983675653027338674}
   - component: {fileID: 2250492388790005384}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SM_Outfit_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,7 +405,7 @@ GameObject:
   - component: {fileID: 8959261632525819266}
   - component: {fileID: 7261282120505174565}
   - component: {fileID: 7380401743459878746}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SM_Ears
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -495,7 +495,7 @@ GameObject:
   - component: {fileID: 7378114401690295411}
   - component: {fileID: 4956849417049588630}
   - component: {fileID: 441203656536967553}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SM_Nose_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -586,7 +586,7 @@ GameObject:
   - component: {fileID: 8133426653526310925}
   - component: {fileID: 2085535457401743409}
   - component: {fileID: 7338797502737002732}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -697,7 +697,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4601538847277029294}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -736,7 +736,7 @@ GameObject:
   - component: {fileID: 5918049923743348331}
   - component: {fileID: 7028340473911104959}
   - component: {fileID: 3672896800839446537}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SM_Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -824,7 +824,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7290147933897552439}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Claw_Creator_Character_test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -860,7 +860,7 @@ GameObject:
   - component: {fileID: 4861695645162125806}
   - component: {fileID: 2680233558641576868}
   - component: {fileID: 2454500575354882570}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SM_Hair_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -950,7 +950,8 @@ GameObject:
   - component: {fileID: 7489742164655007768}
   - component: {fileID: 4539613853609705369}
   - component: {fileID: 1917203653742018618}
-  m_Layer: 0
+  - component: {fileID: 474903168861388624}
+  m_Layer: 6
   m_Name: DemoCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -982,7 +983,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9140035560712911698}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1016,6 +1017,7 @@ MonoBehaviour:
   shouldLookAtTarget: 0
   head: {fileID: 4601538847277029294}
   lookAtTarget: {fileID: 0}
+  avoidance: {fileID: 474903168861388624}
   walkDuration: 1
   popFeedbackSettings:
     startFromCurrent: 0
@@ -1047,3 +1049,25 @@ MonoBehaviour:
     clothing: {fileID: 2250492388790005384}
     clothingMesh: {fileID: 6983675653027338674}
   test_item: {fileID: 11400000, guid: 0dd2d938bbf5e444cb367160b287e3e3, type: 2}
+--- !u!114 &474903168861388624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9140035560712911698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608e8e40893f44b686031eec03de20e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterAvoidance
+  enableAvoidance: 0
+  showDebugRays: 0
+  rayRadius: 10
+  rayCount: 10
+  minDistance: 2
+  repulsionSpeed: 3
+  rayHeightOffset: 0.5
+  avoidanceLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
