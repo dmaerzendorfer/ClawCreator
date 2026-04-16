@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ItemSO", menuName = "Scriptable Objects/ItemSO")]
@@ -5,7 +6,7 @@ public class ItemSO : ScriptableObject
 {
     public Sprite sprite;
     public Mesh mesh;
-    public Material material;
+    public List<Material> materials;
     public EquipmentType equipmentType;
 }
 

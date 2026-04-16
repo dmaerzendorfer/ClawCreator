@@ -94,15 +94,15 @@ public class Character : MonoBehaviour
                 features.mouthPlane.material.SetTexture(BaseTexture, item.sprite.texture);
                 break;
             case EquipmentType.Headwear:
-                features.headwear.material = item.material;
+                features.headwear.materials = item.materials.ToArray();
                 features.headwearMesh.mesh = item.mesh;
                 break;
             case EquipmentType.Nose:
-                features.nose.material = item.material;
+                features.nose.materials = item.materials.ToArray();
                 features.noseMesh.mesh = item.mesh;
                 break;
             case EquipmentType.Clothing:
-                features.clothing.material = item.material;
+                features.clothing.materials = item.materials.ToArray();
                 features.clothingMesh.mesh = item.mesh;
                 break;
         }
