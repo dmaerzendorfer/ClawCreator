@@ -13,7 +13,13 @@ MonoBehaviour:
   m_Name: TestItem
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   sprite: {fileID: 21300000, guid: 813d2e11c2aa9b7489c7d1475c9d227c, type: 3}
+<<<<<<< Updated upstream
   mesh: {fileID: 2874703115653662800, guid: ba1fbcbce27a1314e88e4034c36def74, type: 3}
   materials:
   - {fileID: 2100000, guid: a2adb87c54284c7459012a721c97246f, type: 2}
   equipmentType: 0
+=======
+  mesh: {fileID: 3935788430634002480, guid: ba1fbcbce27a1314e88e4034c36def74, type: 3}
+  material: {fileID: 2100000, guid: d8080afcdc53ad548aa0d93f9ac1de2e, type: 2}
+  equipmentType: 2
+>>>>>>> Stashed changes
