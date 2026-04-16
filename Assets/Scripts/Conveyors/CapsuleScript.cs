@@ -24,5 +24,10 @@ public class CapsuleScript : MonoBehaviour
             rb.angularVelocity = 0;
         }
     }
+
+    public ItemSO GetItem()
+    {
+        return item;
+    }
     
 }

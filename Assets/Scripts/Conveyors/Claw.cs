@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using PrimeTween;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,14 +11,15 @@ public class Claw : MonoBehaviour
     [SerializeField] private float maxAngle;
     [SerializeField] private float minAngle;
     [SerializeField] private float speed = 1;
-    [SerializeField] private float secondsBetweenGrabs = 10;
     [SerializeField] private Vector3 startPosition;
     [SerializeField] private float grabHeight;
+    [SerializeField] private Transform grabCenter;
     
     private Vector2 _movementVector;
     // private bool _open;
     private float _lastActivation;
     private bool _inAnimation = false;
+    private List<CapsuleScript> _capsules = new List<CapsuleScript>();
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -66,7 +68,9 @@ public class Claw : MonoBehaviour
 
         _inAnimation = true;
         
-        Sequence.Create()
+        // Sequence ballSequence = new Sequence();
+        
+        Sequence grabSequence = Sequence.Create()
             // Move down and open claw
             .Group(Tween.Position(transform, grabPosition, duration: 1))
             .Group(Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, maxAngle), duration: 1))
@@ -77,19 +81,32 @@ public class Claw : MonoBehaviour
             // move back up
             .Chain(Tween.Position(transform, returnPosition, duration: 1))
             // move to start position
-            .Chain(Tween.Position(transform, startPosition, duration: 1))
+            .Chain(Tween.Position(transform, startPosition, duration: 1).OnComplete(() => { 
+                DetectBalls();
+                CreateBallSequence();
+            }))
             // move to bg by scaling
             .Chain(Tween.Scale(transform, new Vector3(0.7f, 0.7f, 0.7f), duration: 1))
+            // .Group(ballSequence)
             // open claw
             .Chain(Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, maxAngle), duration: 1))
-            .Group(Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, maxAngle), duration: 1))
+            .Group(Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, maxAngle), duration: 1).OnComplete(() =>
+            {
+                // foreach (CapsuleScript capsule in _capsules)
+                // {
+                //     Destroy(capsule.gameObject);
+                // }
+                _capsules.Clear();
+            }))
             // close claw
             .Chain(Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, minAngle), duration: 1))
             .Group(Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, minAngle), duration: 1))
-            // move to forground
+            // move to foreground
             .Chain(Tween.Scale(transform, new Vector3(1f, 1f, 1f), duration: 1))
             // stop animation lock
-            .OnComplete(() => {_inAnimation = false;});
+            .OnComplete(() => {
+                _inAnimation = false;
+            });
     }
     //     }
     //     else
@@ -98,4 +115,29 @@ public class Claw : MonoBehaviour
     //         Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, minAngle), duration: 1);
     //     }
     // }
+
+    private void DetectBalls()
+    {
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(new Vector2(grabCenter.position.x, grabCenter.position.y), new Vector2(2, 2), 0, Vector2.down, 0);
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider.gameObject.CompareTag("Ball"))
+            {
+                _capsules.Add(hit.collider.gameObject.GetComponent<CapsuleScript>());
+                Debug.Log("Found Ball " + _capsules.Count + " at " + grabCenter.position);
+            }
+        }
+    }
+
+    private Sequence CreateBallSequence()
+    {
+        Sequence s = Sequence.Create();
+        Debug.Log("Creating Ball Sequence for balls: " + _capsules.Count);
+        foreach (CapsuleScript capsule in _capsules)
+        {
+            Debug.Log("Grouping for scale: " + capsule);
+            s.Group(Tween.Scale(capsule.transform, new Vector3(0.7f, 0.7f, 0.7f), duration: 1));
+        }
+        return s;
+    }
 }
