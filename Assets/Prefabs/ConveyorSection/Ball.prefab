@@ -173,6 +173,8 @@ MonoBehaviour:
   item: {fileID: 11400000, guid: 0dd2d938bbf5e444cb367160b287e3e3, type: 2}
   rb: {fileID: 4319274082931800636}
   spriteRenderer: {fileID: 6001046187421232795}
+  meshFilter: {fileID: 0}
+  meshRenderer: {fileID: 0}
 --- !u!1 &7341132881317309015
 GameObject:
   m_ObjectHideFlags: 0

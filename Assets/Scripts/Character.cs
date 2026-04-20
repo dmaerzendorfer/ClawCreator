@@ -1,4 +1,5 @@
 ﻿using System;
+using Audio;
 using EditorAttributes;
 using PrimeTween;
 using UnityEngine;
@@ -39,12 +40,14 @@ public class Character : MonoBehaviour
 
     private Rigidbody _rigidbody;
     private GameManager _gameManager;
+    private AudioManager _audioManager;
     private Tween _popTween;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _gameManager = GameManager.GetInstance();
+        _audioManager = AudioManager.Instance;
         avoidance.enableAvoidance = false;
     }
 
@@ -84,6 +87,7 @@ public class Character : MonoBehaviour
     {
         if (_popTween.isAlive) _popTween.Complete();
         _popTween = Tween.Scale(transform, popFeedbackSettings);
+        _audioManager.PlaySound("Pop");
 
         switch (item.equipmentType)
         {
@@ -108,10 +112,19 @@ public class Character : MonoBehaviour
         }
     }
 
-
     private void Update()
     {
         if (shouldLookAtTarget)
             head.transform.LookAt(_gameManager.currentCharacter.head.transform);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        var mask = LayerMask.GetMask("Ground");
+        if ((mask & 1 << collision.gameObject.layer) == 1 << collision.gameObject.layer &&
+            collision.relativeVelocity.magnitude > 2f)
+        {
+            _audioManager.PlaySound("Thump");
+        }
     }
 }

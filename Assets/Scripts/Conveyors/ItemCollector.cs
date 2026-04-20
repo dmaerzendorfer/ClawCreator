@@ -1,38 +1,30 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using PrimeTween;
 using UnityEngine;
 
 public class ItemCollector : MonoBehaviour
 {
-    
     private List<ItemSO> _recentItems = new List<ItemSO>();
-    [SerializeField] private GameObject character;
-    
+
+    private GameManager _gm;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _gm = GameManager.GetInstance();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Ball") && other.transform.localScale.x < 1)
         {
-            Debug.Log("Collided with dropped ball trigger!");
             Destroy(other.gameObject);
-            _recentItems.Add(other.gameObject.GetComponent<CapsuleScript>().GetItem());
-            // TODO - you can also just do some other logic here with the other.gameObject.GetComponent<CapsuleScript>().GetItem() line.
-            Sequence.Create().ChainDelay(1).OnComplete(() =>
-            {
-                _recentItems.Clear();
-            });
+            var item = other.gameObject.GetComponent<CapsuleScript>().GetItem();
+            _recentItems.Add(item);
+            _gm.currentCharacter.ApplyItem(item);
+            Sequence.Create().ChainDelay(1).OnComplete(() => { _recentItems.Clear(); });
         }
     }
 }

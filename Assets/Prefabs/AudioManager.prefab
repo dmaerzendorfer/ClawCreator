@@ -44,5 +44,93 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e779d99ae6404784481bc508c2c6a70b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Audio.AudioManager
-  sounds: []
+  sounds:
+  - name: Background
+    audioResource: {fileID: 8300000, guid: db46598fb17cb874da1ac224dfe97012, type: 3}
+    audioMixerGroup: {fileID: -1483778603309964404, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}
+    volume: 1
+    randomizePitch: 0
+    pitch: 1
+    randomPitchRange: {x: 0, y: 0}
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 1
+    source: {fileID: 0}
+  - name: MotorClank
+    audioResource: {fileID: 8300000, guid: 1b81de9e1016f4d4d97ecdb5e62be99f, type: 3}
+    audioMixerGroup: {fileID: -1483778603309964404, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}
+    volume: 0.2
+    randomizePitch: 0
+    pitch: 1
+    randomPitchRange: {x: 0, y: 0}
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 1
+    source: {fileID: 0}
+  - name: Click
+    audioResource: {fileID: 8300000, guid: ccdc1a60cf2e2904b887a9417bc9e777, type: 3}
+    audioMixerGroup: {fileID: 1311956056876030632, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}
+    volume: 0.5
+    randomizePitch: 0
+    pitch: 1
+    randomPitchRange: {x: 0, y: 0}
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Pop
+    audioResource: {fileID: 8300000, guid: dc32d5d296a2732489f683c00142f54a, type: 3}
+    audioMixerGroup: {fileID: 1311956056876030632, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}
+    volume: 1
+    randomizePitch: 0
+    pitch: 1
+    randomPitchRange: {x: 0, y: 0}
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Yay
+    audioResource: {fileID: 8300000, guid: dfd44af90563cab4c9dc57ea9e195935, type: 3}
+    audioMixerGroup: {fileID: 1311956056876030632, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}
+    volume: 0.2
+    randomizePitch: 0
+    pitch: 1
+    randomPitchRange: {x: 0, y: 0}
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Thump
+    audioResource: {fileID: 8300000, guid: 59700ccf05e3f454d8e4b6a0a0a03fae, type: 3}
+    audioMixerGroup: {fileID: 1311956056876030632, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}
+    volume: 0.1
+    randomizePitch: 0
+    pitch: 1
+    randomPitchRange: {x: 0, y: 0}
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: LeftRight
+    audioResource: {fileID: 8300000, guid: a991d950dedc42b4ab7dad3a978d4d82, type: 3}
+    audioMixerGroup: {fileID: 1311956056876030632, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}
+    volume: 1
+    randomizePitch: 0
+    pitch: 1
+    randomPitchRange: {x: 0, y: 0}
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: UpDown
+    audioResource: {fileID: 8300000, guid: 5ca61fe33d2742444819f271d2e8b3e3, type: 3}
+    audioMixerGroup: {fileID: 1311956056876030632, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}
+    volume: 1
+    randomizePitch: 0
+    pitch: 1
+    randomPitchRange: {x: 0, y: 0}
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 0
+    source: {fileID: 0}
   defaultAudioMixerGroup: {fileID: 1311956056876030632, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}

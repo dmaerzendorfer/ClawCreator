@@ -7,6 +7,7 @@ public class CapsuleScript : MonoBehaviour
     [SerializeField] private ItemSO item;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -35,5 +36,4 @@ public class CapsuleScript : MonoBehaviour
         this.item = itemSo;
         spriteRenderer.sprite = itemSo.sprite;
     }
-    
 }

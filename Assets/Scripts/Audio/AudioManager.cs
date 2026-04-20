@@ -63,6 +63,16 @@ namespace Audio
             s.source.pitch = s.randomizePitch ? Random.Range(s.randomPitchRange.x, s.randomPitchRange.y) : s.pitch;
             s.source.Play();
         }
+        public void StopSound(string name)
+        {
+            Sound s = Array.Find(sounds, sound => sound.name == name);
+            if (s == null)
+            {
+                Debug.LogWarning($"Sound with name {name} not found!");
+                return;
+            }
+            s.source.Stop();
+        }
 
         public void CrossFadeToNewLoopingSound(string name, float duration)
         {
