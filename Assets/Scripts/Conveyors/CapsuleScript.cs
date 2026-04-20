@@ -29,5 +29,11 @@ public class CapsuleScript : MonoBehaviour
     {
         return item;
     }
+
+    public void SetItem(ItemSO itemSo)
+    {
+        this.item = itemSo;
+        spriteRenderer.sprite = itemSo.sprite;
+    }
     
 }

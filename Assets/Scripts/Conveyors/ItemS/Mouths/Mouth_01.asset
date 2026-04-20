@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5d7565bf67673f409c67bea38049c9c, type: 3}
-  m_Name: TestItem
+  m_Name: Mouth_01
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  sprite: {fileID: 21300000, guid: 813d2e11c2aa9b7489c7d1475c9d227c, type: 3}
+  sprite: {fileID: 21300000, guid: 317d33922762c2049af19bc2883de20a, type: 3}
   mesh: {fileID: 3935788430634002480, guid: ba1fbcbce27a1314e88e4034c36def74, type: 3}
-  material: {fileID: 2100000, guid: d8080afcdc53ad548aa0d93f9ac1de2e, type: 2}
-  equipmentType: 2
+  materials: []
+  equipmentType: 3
