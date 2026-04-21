@@ -44,7 +44,7 @@ public class CrowdManager : MonoBehaviour
     public Vector3 GetFirstRowPosition()
     {
         var x = firstRowPositions[_currentSlotIndex];
-        _currentSlotIndex++;
+        _currentSlotIndex+=2;
         _currentSlotIndex %= firstRowPositions.Count;
 
         return x.position + new Vector3(Random.Range(-positionNoise, positionNoise), 0,

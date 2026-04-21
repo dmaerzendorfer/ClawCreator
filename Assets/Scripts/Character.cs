@@ -54,9 +54,12 @@ public class Character : MonoBehaviour
     public void MoveTo(Vector3 worldPos, Action onComplete)
     {
         transform.LookAt(worldPos);
+        var oldMass = _rigidbody.mass;
+        _rigidbody.mass *=100f;
         Tween.RigidbodyMovePosition(_rigidbody, worldPos, walkDuration, Ease.InOutSine)
             .OnComplete(() =>
             {
+                _rigidbody.mass = oldMass;
                 // Rotate the Rigidbody so the character faces the GameManager but only on the Y axis (yaw)
                 Vector3 direction = _gameManager.transform.position - transform.position;
                 direction.y = 0f; // remove vertical component so we only rotate around Y
