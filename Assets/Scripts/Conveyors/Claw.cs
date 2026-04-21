@@ -17,6 +17,9 @@ public class Claw : MonoBehaviour
     [SerializeField] private float grabHeight;
     [SerializeField] private Transform grabCenter;
     [SerializeField] public TextMeshProUGUI countDisplay;
+    [SerializeField] public float timeBetweenAnimation = 0.7f;
+    [SerializeField] public float timeExtension = 2f;
+    [SerializeField] public float easingStrength = 0.5f;
 
     public bool canGrab = true;
 
@@ -28,6 +31,8 @@ public class Claw : MonoBehaviour
     private float _lastActivation;
     private bool _inAnimation = false;
     private List<CapsuleScript> _capsules = new List<CapsuleScript>();
+    private Sequence _grabSequence;
+    private bool _movingDown = false;
 
 
     private void Start()
@@ -65,11 +70,28 @@ public class Claw : MonoBehaviour
 
     public void OnActivate(InputAction.CallbackContext context)
     {
-        if (!canGrab) return;
         if (!context.performed)
         {
             return;
         }
+        if (_movingDown)
+        {
+            _grabSequence.Stop();
+            _inAnimation = true;
+            Sequence.Create()
+                .Group(Tween.Position(transform, new Vector3(transform.position.x, startPosition.y, transform.position.z), duration: timeBetweenAnimation))
+                .Group( Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, minAngle), duration: timeBetweenAnimation)
+                .Group( Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, minAngle), duration: timeBetweenAnimation))
+                    .OnComplete(() =>
+                    {
+                        _movingDown = false;
+                        _inAnimation = false;
+                        _gm.OnGrabComplete();
+                        _am.PlaySound("Click");
+                    })
+                );
+        }
+        if (!canGrab) return;
 
         if (_inAnimation) return;
 
@@ -82,8 +104,8 @@ public class Claw : MonoBehaviour
         // _open = !_open;
         // if (_open)
         // {
-        Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, maxAngle), duration: 1);
-        Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, maxAngle), duration: 1);
+        Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, maxAngle), duration: timeBetweenAnimation);
+        Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, maxAngle), duration: timeBetweenAnimation);
 
         Vector3 grabPosition = new Vector3(transform.position.x, grabHeight, transform.position.z);
         Vector3 returnPosition = new Vector3(transform.position.x, startPosition.y, transform.position.z);
@@ -92,28 +114,31 @@ public class Claw : MonoBehaviour
 
         // Sequence ballSequence = new Sequence();
 
-        Sequence grabSequence = Sequence.Create()
+        _movingDown = true;
+        _grabSequence = Sequence.Create()
             // Move down and open claw
-            .Group(Tween.Position(transform, grabPosition, duration: 1))
-            .Group(Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, maxAngle), duration: 1))
-            .Group(Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, maxAngle), duration: 1))
+            .Group(Tween.Position(transform, grabPosition, duration: timeBetweenAnimation))
+            .Group(Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, maxAngle), duration: timeBetweenAnimation))
+            .Group(Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, maxAngle), duration: timeBetweenAnimation).OnComplete(() => { _movingDown = false; })
+            )
             // grab stuff
-            .Chain(Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, minAngle), duration: 1))
-            .Group(Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, minAngle), duration: 1))
+            .Chain(Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, minAngle), duration: timeBetweenAnimation))
+            .Group(Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, minAngle), duration: timeBetweenAnimation))
             // move back up
-            .Chain(Tween.Position(transform, returnPosition, duration: 1))
+            .Chain(Tween.Position(transform, returnPosition, duration: timeBetweenAnimation))
             // move to start position
-            .Chain(Tween.Position(transform, startPosition, duration: 1).OnComplete(() =>
+            .Chain(Tween.Position(transform, startPosition, duration: timeBetweenAnimation +
+                                                                      (Mathf.Abs(transform.position.x - 5) / 9) * timeExtension).OnComplete(() =>
             {
                 DetectBalls();
                 CreateBallSequence();
             }))
             // move to bg by scaling
-            .Chain(Tween.Scale(transform, new Vector3(0.7f, 0.7f, 0.7f), duration: 1)
+            .Chain(Tween.Scale(transform, new Vector3(0.7f, 0.7f, 0.7f), duration: timeBetweenAnimation)
                 // .Group(ballSequence)
                 // open claw
-                .Chain(Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, maxAngle), duration: 1))
-                .Group(Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, maxAngle), duration: 1)
+                .Chain(Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, maxAngle), duration: timeBetweenAnimation))
+                .Group(Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, maxAngle), duration: timeBetweenAnimation)
                     .OnComplete(() =>
                     {
                         // foreach (CapsuleScript capsule in _capsules)
@@ -123,10 +148,10 @@ public class Claw : MonoBehaviour
                         _capsules.Clear();
                     }))
                 // close claw
-                .Chain(Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, minAngle), duration: 1))
-                .Group(Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, minAngle), duration: 1))
+                .Chain(Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, minAngle), duration: timeBetweenAnimation))
+                .Group(Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, minAngle), duration: timeBetweenAnimation))
                 // move to foreground
-                .Chain(Tween.Scale(transform, new Vector3(1f, 1f, 1f), duration: 1))
+                .Chain(Tween.Scale(transform, new Vector3(1f, 1f, 1f), duration: timeBetweenAnimation))
                 // stop animation lock
                 .OnComplete(() =>
                 {
@@ -138,8 +163,8 @@ public class Claw : MonoBehaviour
     //     }
     //     else
     //     {
-    //         Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, minAngle), duration: 1);
-    //         Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, minAngle), duration: 1);
+    //         Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, minAngle), duration: timeBetweenAnimation);
+    //         Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, minAngle), duration: timeBetweenAnimation);
     //     }
     // }
 
@@ -161,7 +186,7 @@ public class Claw : MonoBehaviour
         Sequence s = Sequence.Create();
         foreach (CapsuleScript capsule in _capsules)
         {
-            s.Group(Tween.Scale(capsule.transform, new Vector3(0.7f, 0.7f, 0.7f), duration: 1));
+            s.Group(Tween.Scale(capsule.transform, new Vector3(0.7f, 0.7f, 0.7f), duration: timeBetweenAnimation));
         }
 
         return s;

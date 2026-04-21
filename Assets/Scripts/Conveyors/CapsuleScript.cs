@@ -18,7 +18,7 @@ public class CapsuleScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y <= -10)
+        if (transform.position.y <= -100)
         {
             transform.position = _startPos;
             rb.linearVelocity = Vector2.zero;
@@ -35,5 +35,11 @@ public class CapsuleScript : MonoBehaviour
     {
         this.item = itemSo;
         spriteRenderer.sprite = itemSo.sprite;
+    }
+
+    public void resetPosition()
+    {
+        transform.position = _startPos;
+        transform.localScale = Vector3.one;
     }
 }

@@ -20,8 +20,9 @@ public class ItemCollector : MonoBehaviour
     {
         if (other.CompareTag("Ball") && other.transform.localScale.x < 1)
         {
-            Destroy(other.gameObject);
-            var item = other.gameObject.GetComponent<CapsuleScript>().GetItem();
+            CapsuleScript capsule = other.gameObject.GetComponent<CapsuleScript>();
+            var item = capsule.GetItem();
+            capsule.resetPosition();
             _recentItems.Add(item);
             _gm.currentCharacter.ApplyItem(item);
             Sequence.Create().ChainDelay(1).OnComplete(() => { _recentItems.Clear(); });
