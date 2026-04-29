@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5d7565bf67673f409c67bea38049c9c, type: 3}
   m_Name: Mouth_02
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  sprite: {fileID: 21300000, guid: e44a9330f0902c84ba6dacf8c042ed98, type: 3}
+  sprite: {fileID: 21300000, guid: 00961a17050505842804cd57d485912c, type: 3}
+  happySprite: {fileID: 21300000, guid: d06395f7c23f1934bbc5c5cd423075c9, type: 3}
   mesh: {fileID: 3935788430634002480, guid: ba1fbcbce27a1314e88e4034c36def74, type: 3}
   materials: []
   equipmentType: 3

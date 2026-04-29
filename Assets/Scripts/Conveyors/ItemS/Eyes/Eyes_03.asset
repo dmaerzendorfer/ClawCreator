@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Eyes_03
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   sprite: {fileID: 21300000, guid: f2d348aa46b6dc94e9292ee74aadef93, type: 3}
+  happySprite: {fileID: 21300000, guid: a97a2ea11d27ed8498fdac85c2987284, type: 3}
   mesh: {fileID: 3935788430634002480, guid: ba1fbcbce27a1314e88e4034c36def74, type: 3}
   materials: []
   equipmentType: 1
