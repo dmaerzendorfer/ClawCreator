@@ -76,10 +76,11 @@ public class Character : MonoBehaviour
         _gameManager = GameManager.GetInstance();
         _audioManager = AudioManager.Instance;
         avoidance.enableAvoidance = false;
-        
+
         happyParticles.Stop(true);
         StartBlinkingSequence();
-        StartHappySequence();
+        //StartHappySequence();
+        Random.InitState((int)System.DateTime.Now.Ticks);
     }
 
     private void Update()
@@ -98,12 +99,12 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void TriggerHappyEmote(float? duration = null)
+    public void TriggerHappyEmote(float? duration = null, bool once = false)
     {
         if (_happyEmoteTween.isAlive) return; //if already in a happy emote, don't trigger another one
 
         if (duration == null) duration = happyEmoteDuration;
-        _blinkSequence.Complete(); //no blinking while happy
+        _blinkSequence.Stop(); //no blinking while happy
         _happyEmoteSequence.Complete(); //also no random happiness during already being happy
 
         happyParticles.Play(true);
@@ -122,7 +123,8 @@ public class Character : MonoBehaviour
                 features.mouthPlane.material.SetTexture(BaseTexture, _currentMouthItem.sprite.texture);
             //resume blinking and random happiness
             StartBlinkingSequence();
-            StartHappySequence();
+            if (!once)
+                StartHappySequence();
         });
     }
 
@@ -155,6 +157,9 @@ public class Character : MonoBehaviour
 
     public void MoveTo(Vector3 worldPos, Action onComplete)
     {
+        //after moving the character it starts to randomly be happy
+        StartHappySequence();
+
         transform.LookAt(worldPos);
         var oldMass = _rigidbody.mass;
         _rigidbody.mass *= 100f;
@@ -193,7 +198,7 @@ public class Character : MonoBehaviour
         if (_popTween.isAlive) _popTween.Complete();
         _popTween = Tween.Scale(transform, popFeedbackSettings);
         _audioManager.PlaySound("Pop");
-        TriggerHappyEmote(1.5f);
+        TriggerHappyEmote(1.5f, true);
 
         switch (item.equipmentType)
         {
