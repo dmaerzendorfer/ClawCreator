@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Audio;
 using EditorAttributes;
 using PrimeTween;
@@ -17,6 +19,9 @@ public class CharacterFeatures
     public MeshFilter noseMesh;
     public MeshRenderer clothing;
     public MeshFilter clothingMesh;
+    public Material skinPlaceholder;
+    public List<MeshRenderer> skinRenderers;
+    public List<Material> possibleSkinMaterials;
 }
 
 [RequireComponent(typeof(Rigidbody))]
@@ -69,6 +74,9 @@ public class Character : MonoBehaviour
     private Tween _happyEmoteTween;
     private Sequence _happyEmoteSequence;
     private Sequence _blinkSequence;
+    //---
+
+    private Material _skinMaterial;
 
     private void Start()
     {
@@ -79,8 +87,11 @@ public class Character : MonoBehaviour
 
         happyParticles.Stop(true);
         StartBlinkingSequence();
-        //StartHappySequence();
         Random.InitState((int)System.DateTime.Now.Ticks);
+
+        //choose a random skin color
+        _skinMaterial = features.possibleSkinMaterials.OrderBy((x) => Guid.NewGuid()).First();
+        features.skinRenderers.ForEach(x => x.sharedMaterial = _skinMaterial);
     }
 
     private void Update()
@@ -211,17 +222,32 @@ public class Character : MonoBehaviour
                 _currentMouthItem = item;
                 break;
             case EquipmentType.Headwear:
-                features.headwear.materials = item.materials.ToArray();
+                features.headwear.sharedMaterials = item.materials.ToArray();
+                CheckAndReplaceSkinPlaceholder(features.headwear);
                 features.headwearMesh.mesh = item.mesh;
                 break;
             case EquipmentType.Nose:
-                features.nose.materials = item.materials.ToArray();
+                features.nose.sharedMaterials = item.materials.ToArray();
+                CheckAndReplaceSkinPlaceholder(features.nose);
                 features.noseMesh.mesh = item.mesh;
                 break;
-            case EquipmentType.Clothing:
-                features.clothing.materials = item.materials.ToArray();
+            case EquipmentType.Outfit:
+                features.clothing.sharedMaterials = item.materials.ToArray();
+                CheckAndReplaceSkinPlaceholder(features.clothing);
                 features.clothingMesh.mesh = item.mesh;
                 break;
         }
+    }
+
+    private void CheckAndReplaceSkinPlaceholder(MeshRenderer renderer)
+    {
+        Material[] mats = renderer.sharedMaterials;
+        for (int i = 0; i < mats.Length; i++)
+        {
+            if (mats[i].name == features.skinPlaceholder.name)
+                mats[i] = _skinMaterial;
+        }
+
+        renderer.materials = mats;
     }
 }

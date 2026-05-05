@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5d7565bf67673f409c67bea38049c9c, type: 3}
+  m_Name: Headwear_08
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  sprite: {fileID: 21300000, guid: 1c64ea59381f5d2488f9d6d3a328d880, type: 3}
+  happySprite: {fileID: 0}
+  mesh: {fileID: -7884242403269587993, guid: bb576062203637e44b2b75ee776d8220, type: 3}
+  isSkinMaterial: 0
+  materials:
+  - {fileID: 2100000, guid: e209c902221439b4db4b04e716bbc9ec, type: 2}
+  equipmentType: 0

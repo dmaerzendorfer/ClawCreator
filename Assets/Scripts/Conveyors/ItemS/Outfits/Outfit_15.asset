@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5d7565bf67673f409c67bea38049c9c, type: 3}
+  m_Name: Outfit_15
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  sprite: {fileID: 21300000, guid: db08e83d5a3abde4f8f64adcc28a09e6, type: 3}
+  happySprite: {fileID: 0}
+  mesh: {fileID: 2274419939491059581, guid: bb576062203637e44b2b75ee776d8220, type: 3}
+  materials:
+  - {fileID: 2100000, guid: 241dbbc2b2ab9dc43b857a32689563a1, type: 2}
+  - {fileID: 2100000, guid: 6a0b0c93a251ebc499aace43f58d8186, type: 2}
+  - {fileID: 2100000, guid: 7a103e64a484a5741adfe8e4c06060ed, type: 2}
+  - {fileID: 2100000, guid: 1a622b6150ba9744c80237d9fb913c81, type: 2}
+  - {fileID: 2100000, guid: 0d26786ed1cc3724a9b1aa81405da8ce, type: 2}
+  equipmentType: 4

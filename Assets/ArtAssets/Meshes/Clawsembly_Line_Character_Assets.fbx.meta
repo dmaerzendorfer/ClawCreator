@@ -3,7 +3,142 @@ guid: bb576062203637e44b2b75ee776d8220
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Black
+    second: {fileID: 2100000, guid: e209c902221439b4db4b04e716bbc9ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Blonde
+    second: {fileID: 2100000, guid: 04668b7963bd4db4aa1c1b9effb22027, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Brown
+    second: {fileID: 2100000, guid: 6a0b0c93a251ebc499aace43f58d8186, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Cyan
+    second: {fileID: 2100000, guid: 6561e5b3feb6f064d90f635f9fd73f4b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Dark_Blonde
+    second: {fileID: 2100000, guid: 8bd24721669630347bd108451c95d5b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Dark_Blue
+    second: {fileID: 2100000, guid: 56d4c7469ba9bd446bf43ad3ebf70b5a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Dark_Brown
+    second: {fileID: 2100000, guid: c0c04c33d9e0d324fb97046ac3bce976, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Dark_Green
+    second: {fileID: 2100000, guid: bcfc9ddeaa13bc14aa684915a70f7d2c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Dark_Red
+    second: {fileID: 2100000, guid: 5d6957ac895d9a248a992c993a539efc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Green
+    second: {fileID: 2100000, guid: 70dd24fcf1565cd418dc67f24f591a4c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Grey
+    second: {fileID: 2100000, guid: 520ca70abd6a5ae46908d2194033ab21, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Jeans_Blue
+    second: {fileID: 2100000, guid: 039c646c50065164db01320b1b222b9b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Lavender
+    second: {fileID: 2100000, guid: 7a103e64a484a5741adfe8e4c06060ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Light_Blue
+    second: {fileID: 2100000, guid: 552c2a123a0eaa04e9c3345a7e58f037, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Light_Blue.001
+    second: {fileID: 2100000, guid: 49134d8d8cb074d4fa5d1427234e631e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Light_Brown
+    second: {fileID: 2100000, guid: 1a622b6150ba9744c80237d9fb913c81, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Light_Green
+    second: {fileID: 2100000, guid: 6a751d08710a3e04e8432c8c247441d0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Neon_Yellow
+    second: {fileID: 2100000, guid: de45def05f5b9cc48b5a7f30682e9e64, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Orange
+    second: {fileID: 2100000, guid: 0d26786ed1cc3724a9b1aa81405da8ce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Pink
+    second: {fileID: 2100000, guid: fda43d3666c5a3947ba4f7d9b1d63be1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Purple
+    second: {fileID: 2100000, guid: 241dbbc2b2ab9dc43b857a32689563a1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Red
+    second: {fileID: 2100000, guid: 4e3019566bbb868458de60cfc7735bf7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Redish_Brown
+    second: {fileID: 2100000, guid: 49dcab12e5add8241af56751be97ca60, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Skin
+    second: {fileID: 2100000, guid: 46dbe7c5f6b198541910a1304d689892, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Warm_Grey
+    second: {fileID: 2100000, guid: 5c9d6593ea362904da47835ad2d08d53, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_White
+    second: {fileID: 2100000, guid: 8755f5f1e394ece408168c3bc73bbbb8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Yellow
+    second: {fileID: 2100000, guid: 95f0ddba8adbdae4aa26169843bfa62c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

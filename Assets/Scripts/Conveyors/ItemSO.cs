@@ -21,6 +21,6 @@ public enum EquipmentType
     Eyes,
     Nose,
     Mouth,
-    Clothing,
+    Outfit,
     Ears
 }

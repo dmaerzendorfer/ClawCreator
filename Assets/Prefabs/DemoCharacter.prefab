@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275857936877149643}
-  m_Mesh: {fileID: 4641121884211511501, guid: 0e8fa3947391004448451b82f8303dee, type: 3}
+  m_Mesh: {fileID: -6455071151613418538, guid: bb576062203637e44b2b75ee776d8220, type: 3}
 --- !u!23 &3852242782860367129
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -66,9 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2bc65118ddb602e44aa3b11f76224c20, type: 2}
-  - {fileID: 2100000, guid: 415cb0d335c0efc4fa6d5fa41858e6ff, type: 2}
-  - {fileID: 2100000, guid: a2adb87c54284c7459012a721c97246f, type: 2}
+  - {fileID: 2100000, guid: 70dd24fcf1565cd418dc67f24f591a4c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -832,7 +830,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7338777868278433058}
-  m_Mesh: {fileID: 3313254021846308917, guid: 0e8fa3947391004448451b82f8303dee, type: 3}
+  m_Mesh: {fileID: 3313254021846308917, guid: 427928adf384d454498224fcaad07439, type: 3}
 --- !u!23 &1780734603784096664
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15780,7 +15778,21 @@ MonoBehaviour:
     noseMesh: {fileID: 7963759187558660103}
     clothing: {fileID: 3852242782860367129}
     clothingMesh: {fileID: 5378899396220232227}
-  test_item: {fileID: 11400000, guid: 0dd2d938bbf5e444cb367160b287e3e3, type: 2}
+    skinPlaceholder: {fileID: 2100000, guid: 46dbe7c5f6b198541910a1304d689892, type: 2}
+    skinRenderers:
+    - {fileID: 5486163666172755147}
+    - {fileID: 1780734603784096664}
+    - {fileID: 4760184020186328138}
+    possibleSkinMaterials:
+    - {fileID: 2100000, guid: 2835b2330ec860a41a2f9b3314e00efc, type: 2}
+    - {fileID: 2100000, guid: d8080afcdc53ad548aa0d93f9ac1de2e, type: 2}
+    - {fileID: 2100000, guid: 9d9774f75a703994b9b4287ef3b7f1d6, type: 2}
+    - {fileID: 2100000, guid: 24e00fc4c5c9dc5459a181a3cbc05228, type: 2}
+    - {fileID: 2100000, guid: b596117f60cc1c54984f7e14ddef3a75, type: 2}
+    - {fileID: 2100000, guid: 47de445b59499d34a97a5e9e9cdd8789, type: 2}
+    - {fileID: 2100000, guid: d674b9a0364c9554cb799c4656df42b3, type: 2}
+    - {fileID: 2100000, guid: 2bfd8a47272ed0546b0b0bff192bebcc, type: 2}
+  test_item: {fileID: 11400000, guid: 59387330650c8a240a03671c92d0d3fe, type: 2}
   timeBetweenBlinks: {x: 5, y: 7}
   blinkDuration: 0.1
   timeBetweenHappyEmote: {x: 7.5, y: 10}
