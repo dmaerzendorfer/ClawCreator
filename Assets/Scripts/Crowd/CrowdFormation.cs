@@ -85,7 +85,7 @@ namespace Crowd
         }
 
         public static void AssignSlotsSmart(
-            List<TestAvatar> avatars,
+            List<CharacterMovementBehaviour> avatars,
             List<Vector3> slots,
             CrowdFormationSettings settings,
             Vector3 center)

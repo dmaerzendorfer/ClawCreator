@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3348868334471690812}
   - component: {fileID: 8679243792902538153}
+  - component: {fileID: 1510727112528556775}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -45,10 +46,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f3561d60d5a08b43842eab8502866e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  dropInPoint: {fileID: 987201047576887738}
-  characterPrefab: {fileID: 1917203653742018618, guid: 4661200ab72a40d4791dd063797c5aa4, type: 3}
-  crowdManager: {fileID: 0}
+  audioManager: {fileID: 0}
   currentCharacter: {fileID: 0}
+  formationManager: {fileID: 1510727112528556775}
+  claw: {fileID: 0}
+  grabAmounts: 3
+--- !u!114 &1510727112528556775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222554055761384147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9708ddec270d4c05add2b9f268b513f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Crowd.FormationManager
+  characterMovementPrefab: {fileID: 7597235409093587289, guid: 4661200ab72a40d4791dd063797c5aa4, type: 3}
+  spawnPoint: {fileID: 8227963458643100999}
+  formationSettings:
+    frontRowCapacity: 5
+    rowSpacing: 15
+    baseRadius: 15
+    angleRange: 90
+    positionJitter: 3
+    radiusJitter: 2
+    angleJitter: 5
+    rowJitterMultiplier: 0.1
 --- !u!1 &8227963458643100999
 GameObject:
   m_ObjectHideFlags: 0

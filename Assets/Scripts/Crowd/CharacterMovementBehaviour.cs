@@ -3,23 +3,32 @@ using UnityEngine;
 
 namespace Crowd
 {
-    public class TestAvatar : MonoBehaviour
+    public class CharacterMovementBehaviour : MonoBehaviour
     {
+        public Character character;
         public Vector3 target;
+        public float avgSpeed = 3f;
 
         public float newbieTime = 5f;
-        
+
         public bool IsNew => isNew;
-        
+
         private bool isNew = false;
         public float timeInFrontRow = 0f;
         public bool isInFrontRow = false;
-        
+
         public void SetTarget(Vector3 pos)
         {
+            character.LookForward();
             target = pos;
-            // NavMeshAgent or simple movement
-            Tween.PositionAtSpeed(transform, target, 3f, Easing.Standard(Ease.InOutSine));
+            var originalRot = transform.rotation;
+            Tween.PositionAtSpeed(transform, target, avgSpeed, Easing.Standard(Ease.InOutSine))
+                .OnUpdate(this, (character, tween) => { character.transform.LookAt(target); }).OnComplete(() =>
+                {
+                    character.shouldLookAtTarget = true;
+                    character.transform.rotation = originalRot;
+                    character.emotions.StartHappySequence();
+                });
         }
 
         public void StartNewbieTimer()
@@ -27,7 +36,7 @@ namespace Crowd
             isNew = true;
             Tween.Delay(newbieTime).OnComplete(() => isNew = false);
         }
-        
+
         public void Update()
         {
             if (isInFrontRow)
@@ -37,7 +46,7 @@ namespace Crowd
             else
             {
                 // decay so they can come back later
-                timeInFrontRow = Mathf.Max(0f, timeInFrontRow - Time.deltaTime * 0.5f);
+                //timeInFrontRow = Mathf.Max(0f, timeInFrontRow - Time.deltaTime * 0.5f);
             }
         }
     }

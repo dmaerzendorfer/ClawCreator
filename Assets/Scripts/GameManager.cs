@@ -1,4 +1,5 @@
 using Audio;
+using Crowd;
 using EditorAttributes;
 using PrimeTween;
 using UnityEngine;
@@ -8,17 +9,13 @@ public class GameManager : MonoBehaviour
     private static GameManager _gameManager;
 
     public AudioManager audioManager;
-    public Transform dropInPoint;
-    public Character characterPrefab;
-    public CrowdManager crowdManager;
     public Character currentCharacter;
+    public FormationManager formationManager;
 
     [Header("ClawSettings")]
     public Claw claw;
-
     public int grabAmounts = 3;
-
-
+    
     private int _grabsLeft = 3;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -34,10 +31,9 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
-
-        currentCharacter = Instantiate(characterPrefab, dropInPoint.position, dropInPoint.rotation);
-
         claw.SetClawText(grabAmounts.ToString());
+        
+        currentCharacter = formationManager.SpawnNextAvatar().GetComponent<Character>();
     }
 
     public static GameManager GetInstance()
@@ -62,17 +58,12 @@ public class GameManager : MonoBehaviour
     [Button]
     public void NextCharacter()
     {
-        //make character move to empty slot
-        currentCharacter.MoveTo(crowdManager.GetFirstRowPosition(), () =>
-        {
-            //drop in a new character
-            currentCharacter = Instantiate(characterPrefab, dropInPoint.position, dropInPoint.rotation);
-            //reset grab amount
-            _grabsLeft = grabAmounts;
-            claw.SetClawText(_grabsLeft.ToString());
-            claw.canGrab = true;
-            audioManager.PlaySound("Yay");
-            //todo add visual feedback eG pop of claw or smth
-        });
+        currentCharacter = formationManager.SpawnNextAvatar().GetComponent<Character>();
+        
+        //reset grab amount
+        _grabsLeft = grabAmounts;
+        claw.SetClawText(_grabsLeft.ToString());
+        claw.canGrab = true;
+        audioManager.PlaySound("Yay");
     }
 }

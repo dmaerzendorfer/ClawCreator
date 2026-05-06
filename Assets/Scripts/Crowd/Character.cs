@@ -1,0 +1,254 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Audio;
+using EditorAttributes;
+using PrimeTween;
+using UnityEngine;
+
+namespace Crowd
+{
+    [Serializable]
+    public class CharacterFeatures
+    {
+        public MeshRenderer eyesPlane;
+        public MeshRenderer mouthPlane;
+        public MeshRenderer headwear;
+        public MeshFilter headwearMesh;
+        public MeshRenderer nose;
+        public MeshFilter noseMesh;
+        public MeshRenderer clothing;
+        public MeshFilter clothingMesh;
+        public Material skinPlaceholder;
+        public List<MeshRenderer> skinRenderers;
+        public List<Material> possibleSkinMaterials;
+    }
+
+    [RequireComponent(typeof(Rigidbody))]
+    public class Character : MonoBehaviour
+    {
+        private static readonly int BaseTexture = Shader.PropertyToID("_BaseTexture");
+
+        public bool shouldLookAtTarget = false;
+        public Transform head;
+        public Transform lookAtTarget;
+    
+        public TweenSettings<Vector3> popFeedbackSettings;
+
+        [Header("BodyParts")]
+        public CharacterFeatures features;
+
+        [Header("Emotions")]
+        public CharacterEmotions emotions;
+    
+        public ItemSO test_item;
+
+        // [FoldoutGroup("Emotion Settings", nameof(timeBetweenBlinks), nameof(blinkDuration),
+        //     nameof(timeBetweenHappyEmote),
+        //     nameof(happyEmoteDuration),
+        //     nameof(happyParticles))]
+        // [SerializeField] private Void groupHolder;
+        //
+        // [SerializeField, HideProperty, MinMaxSlider(0, 10)]
+        // private Vector2 timeBetweenBlinks = new Vector2(3, 5);
+        //
+        // [SerializeField, HideProperty] private float blinkDuration = .1f;
+        //
+        // [SerializeField, HideProperty, MinMaxSlider(0, 10)]
+        // private Vector2 timeBetweenHappyEmote = new Vector2(5, 6);
+        //
+        // [SerializeField, HideProperty] private float happyEmoteDuration = 2f;
+        // [SerializeField, HideProperty] private ParticleSystem happyParticles;
+
+
+        private GameManager _gameManager;
+        private AudioManager _audioManager;
+        private Tween _popTween;
+
+        //emotion related fields
+        // private ItemSO _currentEyesItem;
+        // private ItemSO _currentMouthItem;
+        //
+        // private Tween _happyEmoteTween;
+        // private Sequence _happyEmoteSequence;
+        // private Sequence _blinkSequence;
+        //---
+
+        private Material _skinMaterial;
+
+        private void Start()
+        {
+            _gameManager = GameManager.GetInstance();
+            _audioManager = AudioManager.Instance;
+
+            // happyParticles.Stop(true);
+            // StartBlinkingSequence();
+            // Random.InitState((int)System.DateTime.Now.Ticks);
+
+            //choose a random skin color
+            _skinMaterial = features.possibleSkinMaterials.OrderBy((x) => Guid.NewGuid()).First();
+            features.skinRenderers.ForEach(x => x.sharedMaterial = _skinMaterial);
+        }
+
+        private void Update()
+        {
+            if (shouldLookAtTarget)
+                head.transform.LookAt(_gameManager.currentCharacter.head.transform);
+        }
+
+        void OnCollisionEnter(Collision collision)
+        {
+            var mask = LayerMask.GetMask("Ground");
+            if ((mask & 1 << collision.gameObject.layer) == 1 << collision.gameObject.layer &&
+                collision.relativeVelocity.magnitude > 2f)
+            {
+                _audioManager.PlaySound("Thump");
+            }
+        }
+
+        public void LookForward()
+        {
+            shouldLookAtTarget = false;
+            head.transform.localRotation = Quaternion.identity;
+        }
+        // public void TriggerHappyEmote(float? duration = null, bool once = false)
+        // {
+        //     if (_happyEmoteTween.isAlive) return; //if already in a happy emote, don't trigger another one
+        //
+        //     if (duration == null) duration = happyEmoteDuration;
+        //     _blinkSequence.Stop(); //no blinking while happy
+        //     _happyEmoteSequence.Complete(); //also no random happiness during already being happy
+        //
+        //     happyParticles.Play(true);
+        //
+        //     if (_currentEyesItem != null)
+        //         features.eyesPlane.material.SetTexture(BaseTexture, _currentEyesItem.happySprite.texture);
+        //     if (_currentMouthItem != null)
+        //         features.mouthPlane.material.SetTexture(BaseTexture, _currentMouthItem.happySprite.texture);
+        //
+        //     _happyEmoteTween = Tween.Delay(duration.Value).OnComplete(() =>
+        //     {
+        //         //revert to normal face
+        //         if (_currentEyesItem != null)
+        //             features.eyesPlane.material.SetTexture(BaseTexture, _currentEyesItem.sprite.texture);
+        //         if (_currentMouthItem != null)
+        //             features.mouthPlane.material.SetTexture(BaseTexture, _currentMouthItem.sprite.texture);
+        //         //resume blinking and random happiness
+        //         StartBlinkingSequence();
+        //         if (!once)
+        //             StartHappySequence();
+        //     });
+        // }
+        //
+        // public void StartHappySequence()
+        // {
+        //     _happyEmoteSequence = Sequence.Create(-1)
+        //         .ChainDelay(Random.Range(timeBetweenHappyEmote.x, timeBetweenHappyEmote.y))
+        //         .ChainCallback(() => { TriggerHappyEmote(); });
+        // }
+        //
+        // public void StartBlinkingSequence()
+        // {
+        //     _blinkSequence = Sequence.Create(-1).ChainCallback(() =>
+        //         {
+        //             if (_currentEyesItem != null)
+        //                 features.eyesPlane.material.SetTexture(BaseTexture, _currentEyesItem.sprite.texture);
+        //         }) //set eyes to normal
+        //         .Chain(Tween.Delay(Random.Range(timeBetweenBlinks.x, timeBetweenBlinks.y)).OnComplete(() =>
+        //                 {
+        //                     if (_currentEyesItem != null)
+        //                         features.eyesPlane.material.SetTexture(BaseTexture, _currentEyesItem.happySprite.texture);
+        //                 }) //wait random time, then sest to blink
+        //                 .Chain(Tween.Delay(blinkDuration)).OnComplete(() =>
+        //                 {
+        //                     if (_currentEyesItem != null)
+        //                         features.eyesPlane.material.SetTexture(BaseTexture, _currentEyesItem.sprite.texture);
+        //                 }) //change back to normal sprite after blink duration
+        //         );
+        // }
+
+        // public void MoveTo(Vector3 worldPos, Action onComplete)
+        // {
+        //     //after moving the character it starts to randomly be happy
+        //     StartHappySequence();
+        //
+        //     transform.LookAt(worldPos);
+        //     var oldMass = _rigidbody.mass;
+        //     _rigidbody.mass *= 100f;
+        //     Tween.RigidbodyMovePosition(_rigidbody, worldPos, walkDuration, Ease.InOutSine)
+        //         .OnComplete(() =>
+        //         {
+        //             _rigidbody.mass = oldMass;
+        //             // Rotate the Rigidbody so the character faces the GameManager but only on the Y axis (yaw)
+        //             Vector3 direction = _gameManager.transform.position - transform.position;
+        //             direction.y = 0f; // remove vertical component so we only rotate around Y
+        //
+        //             if (direction.sqrMagnitude > 0.0001f)
+        //             {
+        //                 Quaternion targetRotation = Quaternion.LookRotation(direction);
+        //                 // Zero out pitch and roll to ensure rotation only on Y
+        //                 targetRotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
+        //
+        //                 transform.rotation = targetRotation;
+        //             }
+        //
+        //             shouldLookAtTarget = true;
+        //             onComplete?.Invoke();
+        //         });
+        // }
+
+        [Button]
+        public void TestItem()
+        {
+            ApplyItem(test_item);
+        }
+
+        public void ApplyItem(ItemSO item)
+        {
+            switch (item.equipmentType)
+            {
+                case EquipmentType.Eyes:
+                    features.eyesPlane.material.SetTexture(BaseTexture, item.sprite.texture);
+                    emotions.currentEyesItem = item;
+                    break;
+                case EquipmentType.Mouth:
+                    features.mouthPlane.material.SetTexture(BaseTexture, item.sprite.texture);
+                    emotions.currentMouthItem = item;
+                    break;
+                case EquipmentType.Headwear:
+                    features.headwear.sharedMaterials = item.materials.ToArray();
+                    CheckAndReplaceSkinPlaceholder(features.headwear);
+                    features.headwearMesh.mesh = item.mesh;
+                    break;
+                case EquipmentType.Nose:
+                    features.nose.sharedMaterials = item.materials.ToArray();
+                    CheckAndReplaceSkinPlaceholder(features.nose);
+                    features.noseMesh.mesh = item.mesh;
+                    break;
+                case EquipmentType.Outfit:
+                    features.clothing.sharedMaterials = item.materials.ToArray();
+                    CheckAndReplaceSkinPlaceholder(features.clothing);
+                    features.clothingMesh.mesh = item.mesh;
+                    break;
+            }
+            
+            if (_popTween.isAlive) _popTween.Complete();
+            _popTween = Tween.Scale(transform, popFeedbackSettings);
+            _audioManager.PlaySound("Pop");
+            emotions.TriggerHappyEmote(1.5f, true);
+
+        }
+
+        private void CheckAndReplaceSkinPlaceholder(MeshRenderer renderer)
+        {
+            Material[] mats = renderer.sharedMaterials;
+            for (int i = 0; i < mats.Length; i++)
+            {
+                if (mats[i].name == features.skinPlaceholder.name)
+                    mats[i] = _skinMaterial;
+            }
+
+            renderer.materials = mats;
+        }
+    }
+}
