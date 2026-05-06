@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5d7565bf67673f409c67bea38049c9c, type: 3}
   m_Name: Outfit_01
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  sprite: {fileID: 21300000, guid: db08e83d5a3abde4f8f64adcc28a09e6, type: 3}
+  sprite: {fileID: 21300000, guid: 4ca33410aaf664c4eab2467e34f14d56, type: 3}
   happySprite: {fileID: 0}
   mesh: {fileID: 4641121884211511501, guid: 427928adf384d454498224fcaad07439, type: 3}
   materials:

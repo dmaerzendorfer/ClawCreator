@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5d7565bf67673f409c67bea38049c9c, type: 3}
   m_Name: Nose_13
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  sprite: {fileID: 21300000, guid: 6feab41ac9fca9e429f2d475254283ea, type: 3}
+  sprite: {fileID: 21300000, guid: 99564080cc5cbc946a13269c4a5e14c0, type: 3}
   happySprite: {fileID: 0}
   mesh: {fileID: -837835038688310128, guid: bb576062203637e44b2b75ee776d8220, type: 3}
-  isSkinMaterial: 0
   materials:
   - {fileID: 2100000, guid: bcfc9ddeaa13bc14aa684915a70f7d2c, type: 2}
   - {fileID: 2100000, guid: 70dd24fcf1565cd418dc67f24f591a4c, type: 2}
