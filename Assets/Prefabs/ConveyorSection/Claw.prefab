@@ -197,8 +197,8 @@ Transform:
   m_GameObject: {fileID: 4000305101509759887}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.69465834, w: 0.71933985}
-  m_LocalPosition: {x: 0.3266, y: -1.4977, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.9386844, z: 1}
+  m_LocalPosition: {x: 0.349, y: -1.5, z: 0}
+  m_LocalScale: {x: 0.3, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7912587187130539800}
@@ -335,8 +335,8 @@ Transform:
   m_GameObject: {fileID: 5463705911467872158}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.69465834, w: 0.71933985}
-  m_LocalPosition: {x: 0.3323, y: -1.4975, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.9343844, z: 1}
+  m_LocalPosition: {x: 0.352, y: -1.502, z: 0}
+  m_LocalScale: {x: 0.3, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2096597133129339168}
@@ -505,6 +505,8 @@ MonoBehaviour:
   grabCenter: {fileID: 909306282369080323}
   countDisplay: {fileID: 2164285237027002008}
   timeBetweenAnimation: 0.7
+  timeExtension: 2
+  easingStrength: 0.5
   canGrab: 1
 --- !u!1 &6347065580780528723
 GameObject:
