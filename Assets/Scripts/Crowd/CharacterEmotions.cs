@@ -50,13 +50,14 @@ namespace Crowd
 
         public void TriggerHappyEmote(float? duration = null, bool once = false)
         {
-            if (_happyEmoteTween.isAlive) _happyEmoteTween.Complete(); 
-            
+            if (_happyEmoteTween.isAlive) _happyEmoteTween.Complete();
+
             if (duration == null) duration = happyEmoteDuration;
             _blinkSequence.Stop(); //no blinking while happy
             _happyEmoteSequence.Complete(); //also no random happiness during already being happy
 
-            happyParticles.Play(true);
+            if (!happyParticles.isPlaying)
+                happyParticles.Play(true);
 
             if (currentEyesItem != null)
                 character.features.eyesPlane.material.SetTexture(BaseTexture, currentEyesItem.happySprite.texture);
@@ -79,6 +80,7 @@ namespace Crowd
 
         public void StartHappySequence()
         {
+            if (_happyEmoteTween.isAlive || _happyEmoteSequence.isAlive) return;
             _happyEmoteSequence = Sequence.Create(-1)
                 .ChainDelay(Random.Range(timeBetweenHappyEmote.x, timeBetweenHappyEmote.y))
                 .ChainCallback(() => { TriggerHappyEmote(); });

@@ -16,6 +16,6 @@ MonoBehaviour:
   happySprite: {fileID: 0}
   mesh: {fileID: -4338313120422115880, guid: bb576062203637e44b2b75ee776d8220, type: 3}
   materials:
-  - {fileID: 2100000, guid: fda43d3666c5a3947ba4f7d9b1d63be1, type: 2}
   - {fileID: 2100000, guid: 6561e5b3feb6f064d90f635f9fd73f4b, type: 2}
+  - {fileID: 2100000, guid: fda43d3666c5a3947ba4f7d9b1d63be1, type: 2}
   equipmentType: 0
