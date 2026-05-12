@@ -42,6 +42,7 @@ namespace Crowd
         public CharacterEmotions emotions;
     
         public ItemSO test_item;
+        public CharacterAnimations animations;
 
         // [FoldoutGroup("Emotion Settings", nameof(timeBetweenBlinks), nameof(blinkDuration),
         //     nameof(timeBetweenHappyEmote),
@@ -103,6 +104,7 @@ namespace Crowd
                 collision.relativeVelocity.magnitude > 2f)
             {
                 _audioManager.PlaySound("Thump");
+                animations.HitGround();
             }
         }
 

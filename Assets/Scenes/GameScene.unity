@@ -2034,6 +2034,84 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e779d99ae6404784481bc508c2c6a70b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Audio.AudioManager
+--- !u!1001 &590543294
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1844891236}
+    m_Modifications:
+    - target: {fileID: 885023097572676858, guid: 94145a2ae8f52f944b75bd0c8baf6bb3, type: 3}
+      propertyPath: m_Name
+      value: Ball (144)
+      objectReference: {fileID: 0}
+    - target: {fileID: 885023097572676858, guid: 94145a2ae8f52f944b75bd0c8baf6bb3, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881079521161709662, guid: 94145a2ae8f52f944b75bd0c8baf6bb3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -29.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881079521161709662, guid: 94145a2ae8f52f944b75bd0c8baf6bb3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 14.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881079521161709662, guid: 94145a2ae8f52f944b75bd0c8baf6bb3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881079521161709662, guid: 94145a2ae8f52f944b75bd0c8baf6bb3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.98393184
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881079521161709662, guid: 94145a2ae8f52f944b75bd0c8baf6bb3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881079521161709662, guid: 94145a2ae8f52f944b75bd0c8baf6bb3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881079521161709662, guid: 94145a2ae8f52f944b75bd0c8baf6bb3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.17854463
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881079521161709662, guid: 94145a2ae8f52f944b75bd0c8baf6bb3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881079521161709662, guid: 94145a2ae8f52f944b75bd0c8baf6bb3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881079521161709662, guid: 94145a2ae8f52f944b75bd0c8baf6bb3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 20.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 5015826438220826891, guid: 94145a2ae8f52f944b75bd0c8baf6bb3, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341132881317309015, guid: 94145a2ae8f52f944b75bd0c8baf6bb3, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174000201796908030, guid: 94145a2ae8f52f944b75bd0c8baf6bb3, type: 3}
+      propertyPath: conveyor
+      value: 
+      objectReference: {fileID: 1396211607}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 94145a2ae8f52f944b75bd0c8baf6bb3, type: 3}
+--- !u!4 &590543295 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3881079521161709662, guid: 94145a2ae8f52f944b75bd0c8baf6bb3, type: 3}
+  m_PrefabInstance: {fileID: 590543294}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &592333834
 GameObject:
   m_ObjectHideFlags: 0
@@ -5541,6 +5619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95ce0f7019a9675439d507c2fe3c9841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemDropChecker
+  _ballContainer: {fileID: 1844891237}
 --- !u!212 &1653174073
 SpriteRenderer:
   serializedVersion: 2
@@ -5994,6 +6073,7 @@ Transform:
   - {fileID: 1550495332}
   - {fileID: 447184292}
   - {fileID: 1670340988}
+  - {fileID: 590543295}
   - {fileID: 660113606}
   - {fileID: 1796584416}
   - {fileID: 769294697}

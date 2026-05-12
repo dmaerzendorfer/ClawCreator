@@ -28,7 +28,9 @@ namespace Crowd
                     character.shouldLookAtTarget = true;
                     character.transform.rotation = originalRot;
                     character.emotions.StartHappySequence();
+                    character.animations.LoopIdle();
                 });
+            character.animations.LoopWalk();
         }
 
         public void StartNewbieTimer()

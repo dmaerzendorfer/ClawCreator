@@ -7,6 +7,7 @@ public class CapsuleScript : MonoBehaviour
     [SerializeField] private ItemSO item;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer capsuleSpriteRenderer;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,6 +36,22 @@ public class CapsuleScript : MonoBehaviour
     {
         this.item = itemSo;
         spriteRenderer.sprite = itemSo.sprite;
+        if (item.name.StartsWith("Eyes"))
+        {
+            capsuleSpriteRenderer.color = Color.white;
+        } else if (item.name.StartsWith("Headwear"))
+        {
+            capsuleSpriteRenderer.color = Color.red;
+        }  else if (item.name.StartsWith("Nose")) 
+        {
+            capsuleSpriteRenderer.color = Color.green;
+        } else if (item.name.StartsWith("Mouth")) 
+        {
+            capsuleSpriteRenderer.color = Color.blue;
+        }  else if (item.name.StartsWith("Outfit")) 
+        {
+            capsuleSpriteRenderer.color = Color.yellow;
+        }
     }
 
     public void resetPosition()

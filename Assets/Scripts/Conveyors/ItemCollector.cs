@@ -9,6 +9,8 @@ public class ItemCollector : MonoBehaviour
     private List<ItemSO> _recentItems = new List<ItemSO>();
 
     private GameManager _gm;
+    [SerializeField]
+    private BallContainer _ballContainer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,7 +23,9 @@ public class ItemCollector : MonoBehaviour
         if (other.CompareTag("Ball") && other.transform.localScale.x < 1)
         {
             CapsuleScript capsule = other.gameObject.GetComponent<CapsuleScript>();
-            var item = capsule.GetItem();
+            ItemSO item = capsule.GetItem();
+            ItemSO newItem = _ballContainer.GetReplacementItem(item);
+            capsule.SetItem(newItem);
             capsule.resetPosition();
             _recentItems.Add(item);
             _gm.currentCharacter.ApplyItem(item);
