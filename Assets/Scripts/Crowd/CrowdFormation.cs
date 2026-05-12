@@ -100,7 +100,7 @@ namespace Crowd
                     //first character always gets a front row slot
                     int index = Random.Range(0, Mathf.Min(settings.frontRowCapacity, availableSlots.Count));
                     mini.isInFrontRow = true;
-                    mini.SetTarget(availableSlots[index]);
+                    mini.SetTarget(availableSlots[index], false);
                     availableSlots.RemoveAt(index);
                     first = false;
                     continue;

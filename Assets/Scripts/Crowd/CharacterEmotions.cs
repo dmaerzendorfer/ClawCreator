@@ -1,4 +1,5 @@
-﻿using EditorAttributes;
+﻿using System;
+using EditorAttributes;
 using PrimeTween;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -46,6 +47,13 @@ namespace Crowd
             happyParticles.Stop(true);
             StartBlinkingSequence();
             Random.InitState((int)System.DateTime.Now.Ticks);
+        }
+
+        private void OnDestroy()
+        {
+            _happyEmoteTween.Complete();
+            _happyEmoteSequence.Complete();
+            _blinkSequence.Complete();
         }
 
         public void TriggerHappyEmote(float? duration = null, bool once = false)

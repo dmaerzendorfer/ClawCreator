@@ -15823,7 +15823,9 @@ MonoBehaviour:
   character: {fileID: 1917203653742018618}
   target: {x: 0, y: 0, z: 0}
   avgSpeed: 15
+  delayBeforeMove: {x: 0, y: 0.2}
   newbieTime: 5
+  deleteAfterReachingTarget: 0
   timeInFrontRow: 0
   isInFrontRow: 0
 --- !u!114 &4514260950298597180

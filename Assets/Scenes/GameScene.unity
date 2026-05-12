@@ -1437,6 +1437,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1510727112528556775, guid: 47ab2cc90a7f18e4084876ae6691db9e, type: 3}
+      propertyPath: maxCrowdSize
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3348868334471690812, guid: 47ab2cc90a7f18e4084876ae6691db9e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.6
@@ -3438,7 +3442,6 @@ GameObject:
   m_Component:
   - component: {fileID: 863255205}
   - component: {fileID: 863255208}
-  - component: {fileID: 863255207}
   - component: {fileID: 863255206}
   m_Layer: 8
   m_Name: RenderTextureCamera
@@ -3506,14 +3509,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!81 &863255207
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 863255204}
-  m_Enabled: 1
 --- !u!20 &863255208
 Camera:
   m_ObjectHideFlags: 0

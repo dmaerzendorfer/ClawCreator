@@ -32,7 +32,7 @@ namespace Crowd
         public bool shouldLookAtTarget = false;
         public Transform head;
         public Transform lookAtTarget;
-    
+
         public TweenSettings<Vector3> popFeedbackSettings;
 
         [Header("BodyParts")]
@@ -40,7 +40,7 @@ namespace Crowd
 
         [Header("Emotions")]
         public CharacterEmotions emotions;
-    
+
         public ItemSO test_item;
         public CharacterAnimations animations;
 
@@ -56,7 +56,7 @@ namespace Crowd
         {
             _gameManager = GameManager.GetInstance();
             _audioManager = AudioManager.Instance;
-            
+
             //choose a random skin color
             _skinMaterial = features.possibleSkinMaterials.OrderBy((x) => Guid.NewGuid()).First();
             features.skinRenderers.ForEach(x => x.sharedMaterial = _skinMaterial);
@@ -119,12 +119,20 @@ namespace Crowd
                     features.clothingMesh.mesh = item.mesh;
                     break;
             }
-            
-            if (_popTween.isAlive) _popTween.Complete();
-            _popTween = Tween.Scale(transform, popFeedbackSettings);
+
+            DoScaleFeedback();
             _audioManager.PlaySound("Pop");
             emotions.TriggerHappyEmote(1.5f, true);
+        }
 
+        public void DoScaleFeedback(float delay = 0f, Action OnComplete = null)
+        {
+            if (_popTween.isAlive) _popTween.Complete();
+            Tween.Delay(delay).OnComplete(() =>
+            {
+                _popTween = Tween.Scale(transform, popFeedbackSettings)
+                    .OnComplete(OnComplete);
+            });
         }
 
         private void CheckAndReplaceSkinPlaceholder(MeshRenderer renderer)
