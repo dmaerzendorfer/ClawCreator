@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   sprite: {fileID: 21300000, guid: 073fb2c7ba0804f439d94701a3ac1d13, type: 3}
   happySprite: {fileID: 0}
-  mesh: {fileID: -240006961713566980, guid: bb576062203637e44b2b75ee776d8220, type: 3}
+  mesh: {fileID: -240006961713566980, guid: 6817a115ddf5fa244adb992867569b76, type: 3}
   materials:
   - {fileID: 2100000, guid: 6561e5b3feb6f064d90f635f9fd73f4b, type: 2}
   - {fileID: 2100000, guid: e209c902221439b4db4b04e716bbc9ec, type: 2}

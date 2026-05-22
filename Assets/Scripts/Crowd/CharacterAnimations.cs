@@ -48,13 +48,37 @@ namespace Crowd
         private IEnumerator Idle()
         {
             yield return new WaitForSeconds(Random.Range(timeBetweenIdleAnimations.x, timeBetweenIdleAnimations.y));
-            switch (Random.Range(0, 2))
+            switch (Random.Range(0, 10))
             {
                 case 0:
                     animator.SetTrigger("interrupt1");
                     break;
                 case 1:
                     animator.SetTrigger("interrupt2");
+                    break;
+                case 2:
+                    animator.SetTrigger("interrupt3");
+                    break;
+                case 3:
+                    animator.SetTrigger("interrupt4");
+                    break;
+                case 4:
+                    animator.SetTrigger("interrupt5");
+                    break;
+                case 5:
+                    animator.SetTrigger("interrupt6");
+                    break;
+                case 6:
+                    animator.SetTrigger("interrupt7");
+                    break;
+                case 7:
+                    animator.SetTrigger("interrupt8");
+                    break;
+                case 8:
+                    animator.SetTrigger("interrupt9");
+                    break;
+                case 9:
+                    animator.SetTrigger("interrupt10");
                     break;
                 
             }

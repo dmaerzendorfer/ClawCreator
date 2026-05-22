@@ -11,16 +11,16 @@ namespace Crowd
     [Serializable]
     public class CharacterFeatures
     {
-        public MeshRenderer eyesPlane;
-        public MeshRenderer mouthPlane;
-        public MeshRenderer headwear;
+        public SkinnedMeshRenderer eyesPlane;
+        public SkinnedMeshRenderer mouthPlane;
+        public SkinnedMeshRenderer headwear;
         public MeshFilter headwearMesh;
-        public MeshRenderer nose;
+        public SkinnedMeshRenderer nose;
         public MeshFilter noseMesh;
-        public MeshRenderer clothing;
+        public SkinnedMeshRenderer clothing;
         public MeshFilter clothingMesh;
         public Material skinPlaceholder;
-        public List<MeshRenderer> skinRenderers;
+        public List<SkinnedMeshRenderer> skinRenderers;
         public List<Material> possibleSkinMaterials;
     }
 
@@ -96,27 +96,30 @@ namespace Crowd
             switch (item.equipmentType)
             {
                 case EquipmentType.Eyes:
-                    features.eyesPlane.material.SetTexture(BaseTexture, item.sprite.texture);
+                    features.eyesPlane.materials[0].SetTexture(BaseTexture, item.sprite.texture);
                     emotions.currentEyesItem = item;
                     break;
                 case EquipmentType.Mouth:
-                    features.mouthPlane.material.SetTexture(BaseTexture, item.sprite.texture);
+                    features.mouthPlane.materials[0].SetTexture(BaseTexture, item.sprite.texture);
                     emotions.currentMouthItem = item;
                     break;
                 case EquipmentType.Headwear:
                     features.headwear.sharedMaterials = item.materials.ToArray();
                     CheckAndReplaceSkinPlaceholder(features.headwear);
-                    features.headwearMesh.mesh = item.mesh;
+                    // features.headwearMesh.mesh = item.mesh;
+                    features.headwear.sharedMesh = item.mesh;
                     break;
                 case EquipmentType.Nose:
                     features.nose.sharedMaterials = item.materials.ToArray();
                     CheckAndReplaceSkinPlaceholder(features.nose);
-                    features.noseMesh.mesh = item.mesh;
+                    // features.noseMesh.mesh = item.mesh;
+                    features.nose.sharedMesh = item.mesh;
                     break;
                 case EquipmentType.Outfit:
                     features.clothing.sharedMaterials = item.materials.ToArray();
                     CheckAndReplaceSkinPlaceholder(features.clothing);
-                    features.clothingMesh.mesh = item.mesh;
+                    // features.clothingMesh.mesh = item.mesh;
+                    features.clothing.sharedMesh = item.mesh;
                     break;
             }
 
@@ -135,7 +138,7 @@ namespace Crowd
             });
         }
 
-        private void CheckAndReplaceSkinPlaceholder(MeshRenderer renderer)
+        private void CheckAndReplaceSkinPlaceholder(SkinnedMeshRenderer renderer)
         {
             Material[] mats = renderer.sharedMaterials;
             for (int i = 0; i < mats.Length; i++)
