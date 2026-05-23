@@ -138,5 +138,10 @@ namespace Crowd
                 }
             }
         }
+
+        public int GetAvatarCount()
+        {
+            return _avatars.Count;
+        }
     }
 }

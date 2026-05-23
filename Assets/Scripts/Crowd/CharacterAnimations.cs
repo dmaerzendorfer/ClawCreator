@@ -14,9 +14,12 @@ namespace Crowd
         
         private bool _isIdle = false;
         private bool _isWalking = false;
-        [SerializeField, HideProperty, MinMaxSlider(2, 60)]
+        [SerializeField, MinMaxSlider(2, 180)]
         private Vector2 timeBetweenIdleAnimations = new Vector2(5, 30);
+        [SerializeField]
+        private float frontTimingMultiplier = 2f;
         private Coroutine _idleRoutine;
+        private bool _frontNPC = true;
 
         public void LoopIdle()
         {
@@ -29,6 +32,7 @@ namespace Crowd
 
         public void LoopWalk()
         {
+            _frontNPC = false;
             //TODO walk from podest to crowd or move within crowd, interrupt idling
             _isWalking = true;
             _isIdle = false;
@@ -47,7 +51,15 @@ namespace Crowd
 
         private IEnumerator Idle()
         {
-            yield return new WaitForSeconds(Random.Range(timeBetweenIdleAnimations.x, timeBetweenIdleAnimations.y));
+            if (_frontNPC)
+            {
+                yield return new WaitForSeconds(Random.Range(timeBetweenIdleAnimations.x / frontTimingMultiplier, timeBetweenIdleAnimations.y / frontTimingMultiplier));
+            }
+            else
+            {
+                float multiplier = Mathf.Max(GameManager.GetInstance().formationManager.GetAvatarCount() / 10f, 1f);
+                yield return new WaitForSeconds(Random.Range(timeBetweenIdleAnimations.x * multiplier, timeBetweenIdleAnimations.y * multiplier));
+            }
             switch (Random.Range(0, 10))
             {
                 case 0:
@@ -80,7 +92,6 @@ namespace Crowd
                 case 9:
                     animator.SetTrigger("interrupt10");
                     break;
-                
             }
 
             if (_isIdle)
