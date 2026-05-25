@@ -181,3 +181,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ConveyorBelt
   moveLeft: 1
   speed: 1
+  maxForce: 1
