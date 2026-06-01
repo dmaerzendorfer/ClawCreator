@@ -1,6 +1,5 @@
 using System.Collections;
 using EditorAttributes;
-using UnityEditor.Animations;
 using UnityEngine;
 
 namespace Crowd
