@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using EditorAttributes;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -17,11 +18,11 @@ namespace Crowd
         [SerializeField]
         [Tooltip("Characters will walk to one of these points before despawning. Should be offscreen.")]
         private List<GameObject> despawnPoints;
-        
+
         [SerializeField]
         private int maxCrowdSize = 2;
 
-        
+
         [SerializeField]
         private CrowdFormationSettings formationSettings;
 
@@ -66,7 +67,8 @@ namespace Crowd
             }
 
             //spawn new avatar
-            var newAvatar = Instantiate(characterMovementPrefab, spawnPoint.transform.position, spawnPoint.transform.rotation);
+            var newAvatar = Instantiate(characterMovementPrefab, spawnPoint.transform.position,
+                spawnPoint.transform.rotation);
             _centerCharacterMovement = newAvatar;
             _centerCharacterMovement.transform.parent = transform;
             _centerCharacterMovement = newAvatar;
@@ -77,22 +79,24 @@ namespace Crowd
         void UpdateFormation()
         {
             //let the characters pop and wait a few sec before they move
-            
+
             //check if we have too many avatars, if so, send the ones in the back to despawn
             if (_avatars.Count > maxCrowdSize)
             {
                 int excess = _avatars.Count - maxCrowdSize;
                 for (int i = 0; i < excess; i++)
                 {
-                    var toBeDeleted = _avatars[_avatars.Count-1];
-                    _avatars.RemoveAt(_avatars.Count-1);
-                    
+                    var toBeDeleted = _avatars[_avatars.Count - 1];
+                    _avatars.RemoveAt(_avatars.Count - 1);
+
                     //todo: maybe let them emote with a wave or smth before moving out?
+                    var despawnPoint = despawnPoints
+                        .OrderBy(x => (x.transform.position - toBeDeleted.transform.position).sqrMagnitude).First();
                     toBeDeleted.deleteAfterReachingTarget = true;
-                    toBeDeleted.SetTarget(despawnPoints[Random.Range(0, despawnPoints.Count)].transform.position);
+                    toBeDeleted.SetTarget(despawnPoint.transform.position);
                 }
             }
-            
+
             _crowdSlots = CrowdFormation.GenerateSlots(
                 transform.position,
                 transform.forward,

@@ -43,7 +43,9 @@ namespace Crowd
                             Destroy(gameObject);
                         }
 
-                        character.shouldLookAtTarget = true;
+                        //no looking for now. animations dont like that, maybe fix later
+                        //todo: character gazing possible again.
+                        //character.shouldLookAtTarget = true;
                         character.transform.rotation = originalRot;
                         character.emotions.StartHappySequence();
                         character.animations.LoopIdle();

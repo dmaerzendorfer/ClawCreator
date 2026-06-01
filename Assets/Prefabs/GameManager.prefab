@@ -104,7 +104,7 @@ MonoBehaviour:
   - {fileID: 660707364792334343}
   - {fileID: 2122809975379771781}
   - {fileID: 8335811130046939415}
-  maxCrowdSize: 15
+  maxCrowdSize: 50
   formationSettings:
     frontRowCapacity: 5
     rowSpacing: 15
