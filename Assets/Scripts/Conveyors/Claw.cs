@@ -156,7 +156,7 @@ public class Claw : MonoBehaviour
             .Chain(Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, minAngle), duration: timeBetweenAnimation))
             .Group(Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, minAngle), duration: timeBetweenAnimation))
             // move back up
-            .Chain(Tween.Position(transform, returnPosition, duration: timeBetweenAnimation))
+            .Chain(Tween.Position(transform, returnPosition, duration: timeBetweenAnimation + 0.5f))
             // move to start position
             .Chain(Tween.Position(transform, startPosition, duration: timeBetweenAnimation +
                                                                       (Mathf.Abs(transform.position.x - 5) / 9) * timeExtension).OnComplete(() =>
