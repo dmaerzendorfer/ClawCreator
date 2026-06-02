@@ -65,7 +65,10 @@ namespace Crowd
                     animator.SetTrigger("interrupt1");
                     break;
                 case 1:
-                    animator.SetTrigger("interrupt2");
+                    if (!_frontNPC)
+                    {
+                        animator.SetTrigger("interrupt2"); // sad
+                    }
                     break;
                 case 2:
                     animator.SetTrigger("interrupt3");
@@ -74,7 +77,10 @@ namespace Crowd
                     animator.SetTrigger("interrupt4");
                     break;
                 case 4:
-                    animator.SetTrigger("interrupt5");
+                    if (!_frontNPC)
+                    {
+                        animator.SetTrigger("interrupt5"); // also not good
+                    }
                     break;
                 case 5:
                     animator.SetTrigger("interrupt6");
@@ -86,7 +92,10 @@ namespace Crowd
                     animator.SetTrigger("interrupt8");
                     break;
                 case 8:
-                    animator.SetTrigger("interrupt9");
+                    if (!_frontNPC)
+                    {
+                        animator.SetTrigger("interrupt9"); // angry
+                    }
                     break;
                 case 9:
                     animator.SetTrigger("interrupt10");

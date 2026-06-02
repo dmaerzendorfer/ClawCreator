@@ -113,7 +113,7 @@ MonoBehaviour:
     positionJitter: 3
     radiusJitter: 2
     angleJitter: 5
-    rowJitterMultiplier: 0.1
+    rowJitterMultiplier: 0.05
 --- !u!1 &2122809975379771781
 GameObject:
   m_ObjectHideFlags: 0

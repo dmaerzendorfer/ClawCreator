@@ -22,7 +22,7 @@ namespace Crowd
 
         [SerializeField, HideProperty] private float blinkDuration = .1f;
 
-        [SerializeField, HideProperty, MinMaxSlider(0, 10)]
+        [SerializeField, HideProperty, MinMaxSlider(0, 20)]
         private Vector2 timeBetweenHappyEmote = new Vector2(5, 6);
 
         [SerializeField, HideProperty] private float happyEmoteDuration = 2f;

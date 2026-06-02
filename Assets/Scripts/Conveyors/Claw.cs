@@ -84,7 +84,7 @@ public class Claw : MonoBehaviour
                 .Group(Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, minAngle), duration: timeBetweenAnimation))
                 .Chain(Tween.Position(transform,
                     new Vector3(transform.position.x, startPosition.y, transform.position.z),
-                    duration: timeBetweenAnimation))
+                    duration: timeBetweenAnimation + 0.5f))
                 .Chain(Tween.Position(transform, startPosition, duration: timeBetweenAnimation +
                                                                           (Mathf.Abs(transform.position.x - 5) / 9) * timeExtension).OnComplete(() =>
                 {

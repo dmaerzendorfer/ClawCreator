@@ -2119,7 +2119,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: -6455071151613418538, guid: 6817a115ddf5fa244adb992867569b76, type: 3}
+  m_Mesh: {fileID: 0}
   m_Bones:
   - {fileID: 86596096426825231}
   - {fileID: 8030769720847670886}
@@ -17840,7 +17840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Crowd.CharacterEmotions
   timeBetweenBlinks: {x: 5, y: 7}
   blinkDuration: 0.1
-  timeBetweenHappyEmote: {x: 6, y: 10}
+  timeBetweenHappyEmote: {x: 15, y: 20}
   happyEmoteDuration: 2
   happyParticles: {fileID: 8770333512361476325}
   character: {fileID: 1917203653742018618}
