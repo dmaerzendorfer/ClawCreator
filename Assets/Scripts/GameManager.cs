@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     public Claw claw;
     public int grabAmounts = 3;
     
+    [SerializeField]
+    private QRGenerator qrGen;
+    
     private int _grabsLeft = 3;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -58,6 +61,7 @@ public class GameManager : MonoBehaviour
     [Button]
     public void NextCharacter()
     {
+        qrGen.updateQRCode(currentCharacter.hairId, currentCharacter.noseId, currentCharacter.mouthId, currentCharacter.eyeId, currentCharacter.outfitId, currentCharacter.color);
         currentCharacter = formationManager.SpawnNextAvatar().GetComponent<Character>();
         
         //reset grab amount

@@ -52,6 +52,13 @@ namespace Crowd
 
         private Material _skinMaterial;
 
+        public int hairId;
+        public int eyeId;
+        public int mouthId;
+        public int outfitId;
+        public int noseId;
+        public int color;
+
         private void Start()
         {
             _gameManager = GameManager.GetInstance();
@@ -59,6 +66,8 @@ namespace Crowd
 
             //choose a random skin color
             _skinMaterial = features.possibleSkinMaterials.OrderBy((x) => Guid.NewGuid()).First();
+            Debug.Log("Trying to parse: " + "0x" + ColorUtility.ToHtmlStringRGB(_skinMaterial.color));
+            color = int.Parse(ColorUtility.ToHtmlStringRGB(_skinMaterial.color), System.Globalization.NumberStyles.HexNumber);
             features.skinRenderers.ForEach(x => x.sharedMaterial = _skinMaterial);
         }
 
@@ -98,28 +107,33 @@ namespace Crowd
                 case EquipmentType.Eyes:
                     features.eyesPlane.materials[0].SetTexture(BaseTexture, item.sprite.texture);
                     emotions.currentEyesItem = item;
+                    eyeId = int.Parse(item.name.Split("_")[item.name.Split("_").Length - 1]);
                     break;
                 case EquipmentType.Mouth:
                     features.mouthPlane.materials[0].SetTexture(BaseTexture, item.sprite.texture);
                     emotions.currentMouthItem = item;
+                    mouthId = int.Parse(item.name.Split("_")[item.name.Split("_").Length - 1]);
                     break;
                 case EquipmentType.Headwear:
                     features.headwear.sharedMaterials = item.materials.ToArray();
                     CheckAndReplaceSkinPlaceholder(features.headwear);
                     // features.headwearMesh.mesh = item.mesh;
                     features.headwear.sharedMesh = item.mesh;
+                    hairId = int.Parse(item.name.Split("_")[item.name.Split("_").Length - 1]);
                     break;
                 case EquipmentType.Nose:
                     features.nose.sharedMaterials = item.materials.ToArray();
                     CheckAndReplaceSkinPlaceholder(features.nose);
                     // features.noseMesh.mesh = item.mesh;
                     features.nose.sharedMesh = item.mesh;
+                    noseId = int.Parse(item.name.Split("_")[item.name.Split("_").Length - 1]);
                     break;
                 case EquipmentType.Outfit:
                     features.clothing.sharedMaterials = item.materials.ToArray();
                     CheckAndReplaceSkinPlaceholder(features.clothing);
                     // features.clothingMesh.mesh = item.mesh;
                     features.clothing.sharedMesh = item.mesh;
+                    outfitId = int.Parse(item.name.Split("_")[item.name.Split("_").Length - 1]);
                     break;
             }
 
