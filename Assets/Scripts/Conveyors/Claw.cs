@@ -20,6 +20,9 @@ public class Claw : MonoBehaviour
     [SerializeField] public float timeBetweenAnimation = 0.7f;
     [SerializeField] public float timeExtension = 2f;
     [SerializeField] public float easingStrength = 0.5f;
+    
+    [Header("Pop Feedback")]
+    [SerializeField] public TweenSettings<Vector3> popFeedbackSettings;
 
     public bool canGrab = true;
 
@@ -33,6 +36,7 @@ public class Claw : MonoBehaviour
     private List<CapsuleScript> _capsules = new List<CapsuleScript>();
     private Sequence _grabSequence;
     private bool _movingDown = false;
+    private Tween _popTween;
 
 
     private void Start()
@@ -57,6 +61,16 @@ public class Claw : MonoBehaviour
         transform.Translate(plannedMovement, Space.World);
     }
 
+    public void DoScaleFeedback(float delay = 0f, Action OnComplete = null)
+    {
+        if (_popTween.isAlive) _popTween.Complete();
+        Tween.Delay(delay).OnComplete(() =>
+        {
+            _popTween = Tween.Scale(transform, popFeedbackSettings)
+                .OnComplete(OnComplete);
+        });
+    }
+    
     public void OnMove(InputAction.CallbackContext context)
     {
         _movementVector = context.ReadValue<Vector2>();
@@ -66,6 +80,7 @@ public class Claw : MonoBehaviour
     public void SetClawText(string s)
     {
         countDisplay.SetText(s);
+        DoScaleFeedback();
     }
 
     public void OnActivate(InputAction.CallbackContext context)
