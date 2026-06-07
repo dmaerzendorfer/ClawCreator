@@ -6,10 +6,8 @@ namespace Crowd
 {
     public class CharacterAnimations : MonoBehaviour
     {
-     
         [SerializeField]
         private Animator animator;
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
         
         private bool _isIdle = false;
         private bool _isWalking = false;

@@ -100,7 +100,7 @@ namespace Crowd
             // 3. Look at the modified target position
             transform.LookAt(targetPosition);
             return;
-            
+
             // the second argument, upwards, defaults to Vector3.up
             Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
             transform.rotation = Quaternion.Euler(0, rotation.y, 0);
