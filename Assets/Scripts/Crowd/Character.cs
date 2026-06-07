@@ -29,9 +29,7 @@ namespace Crowd
     {
         private static readonly int BaseTexture = Shader.PropertyToID("_BaseTexture");
 
-        public bool shouldLookAtTarget = false;
         public Transform head;
-        public Transform lookAtTarget;
 
         public TweenSettings<Vector3> popFeedbackSettings;
 
@@ -67,15 +65,11 @@ namespace Crowd
             //choose a random skin color
             _skinMaterial = features.possibleSkinMaterials.OrderBy((x) => Guid.NewGuid()).First();
             Debug.Log("Trying to parse: " + "0x" + ColorUtility.ToHtmlStringRGB(_skinMaterial.color));
-            color = int.Parse(ColorUtility.ToHtmlStringRGB(_skinMaterial.color), System.Globalization.NumberStyles.HexNumber);
+            color = int.Parse(ColorUtility.ToHtmlStringRGB(_skinMaterial.color),
+                System.Globalization.NumberStyles.HexNumber);
             features.skinRenderers.ForEach(x => x.sharedMaterial = _skinMaterial);
         }
 
-        private void Update()
-        {
-            if (shouldLookAtTarget)
-                head.transform.LookAt(_gameManager.currentCharacter.head.transform);
-        }
 
         void OnCollisionEnter(Collision collision)
         {
@@ -90,8 +84,28 @@ namespace Crowd
 
         public void LookForward()
         {
-            shouldLookAtTarget = false;
             head.transform.localRotation = Quaternion.identity;
+        }
+
+        public void RotateTowardsCamera()
+        {
+            Vector3 relativePos = Camera.main.transform.position - transform.position;
+
+            // 1. Get the camera's position
+            Vector3 targetPosition = Camera.main.transform.position;
+
+            // 2. Force the target's Y position to match this object's Y position
+            targetPosition.y = transform.position.y;
+
+            // 3. Look at the modified target position
+            transform.LookAt(targetPosition);
+            return;
+            
+            // the second argument, upwards, defaults to Vector3.up
+            Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+            transform.rotation = Quaternion.Euler(0, rotation.y, 0);
+
+            // transform.LookAt(Camera.main.transform);
         }
 
         [Button]

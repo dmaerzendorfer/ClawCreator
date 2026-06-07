@@ -17745,9 +17745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f1e68cd03a648a49c076b360a52152f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Character
-  shouldLookAtTarget: 0
   head: {fileID: 1696461473686607911}
-  lookAtTarget: {fileID: 0}
   popFeedbackSettings:
     startFromCurrent: 0
     startValue: {x: 1, y: 1, z: 1}
@@ -17794,6 +17792,12 @@ MonoBehaviour:
   emotions: {fileID: 4514260950298597180}
   test_item: {fileID: 11400000, guid: 59387330650c8a240a03671c92d0d3fe, type: 2}
   animations: {fileID: 7951276931435694387}
+  hairId: 0
+  eyeId: 0
+  mouthId: 0
+  outfitId: 0
+  noseId: 0
+  color: 0
 --- !u!75 &6448433547239894717
 ConstantForce:
   m_ObjectHideFlags: 0

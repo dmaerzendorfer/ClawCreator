@@ -114,7 +114,7 @@ MonoBehaviour:
   - name: LeftRight
     audioResource: {fileID: 8300000, guid: a991d950dedc42b4ab7dad3a978d4d82, type: 3}
     audioMixerGroup: {fileID: 1311956056876030632, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}
-    volume: 1
+    volume: 0.2
     randomizePitch: 0
     pitch: 1
     randomPitchRange: {x: 0, y: 0}
@@ -125,7 +125,7 @@ MonoBehaviour:
   - name: UpDown
     audioResource: {fileID: 8300000, guid: 5ca61fe33d2742444819f271d2e8b3e3, type: 3}
     audioMixerGroup: {fileID: 1311956056876030632, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}
-    volume: 1
+    volume: 0.2
     randomizePitch: 0
     pitch: 1
     randomPitchRange: {x: 0, y: 0}

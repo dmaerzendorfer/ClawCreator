@@ -83,6 +83,7 @@ MonoBehaviour:
   formationManager: {fileID: 1510727112528556775}
   claw: {fileID: 0}
   grabAmounts: 3
+  qrGen: {fileID: 0}
 --- !u!114 &1510727112528556775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,10 +111,10 @@ MonoBehaviour:
     rowSpacing: 15
     baseRadius: 15
     angleRange: 90
-    positionJitter: 3
+    positionJitter: 1.5
     radiusJitter: 2
-    angleJitter: 5
-    rowJitterMultiplier: 0.05
+    angleJitter: 1.5
+    rowJitterMultiplier: 1
 --- !u!1 &2122809975379771781
 GameObject:
   m_ObjectHideFlags: 0

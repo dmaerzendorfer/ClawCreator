@@ -33,7 +33,6 @@ namespace Crowd
             Tween.Delay(delay, () =>
             {
                 target = pos;
-                var originalRot = transform.rotation;
                 walkingTween = Tween.PositionAtSpeed(transform, target, avgSpeed, Easing.Standard(Ease.InOutSine))
                     .OnUpdate(this, (character, tween) => { character.transform.LookAt(target); }).OnComplete(() =>
                     {
@@ -43,10 +42,7 @@ namespace Crowd
                             Destroy(gameObject);
                         }
 
-                        //no looking for now. animations dont like that, maybe fix later
-                        //todo: character gazing possible again.
-                        //character.shouldLookAtTarget = true;
-                        character.transform.rotation = originalRot;
+                        character.RotateTowardsCamera();
                         character.emotions.StartHappySequence();
                         character.animations.LoopIdle();
                     });
@@ -65,11 +61,6 @@ namespace Crowd
             if (isInFrontRow)
             {
                 timeInFrontRow += Time.deltaTime;
-            }
-            else
-            {
-                // decay so they can come back later
-                //timeInFrontRow = Mathf.Max(0f, timeInFrontRow - Time.deltaTime * 0.5f);
             }
         }
     }
