@@ -153,6 +153,7 @@ namespace Crowd
                     bool isFrontRowSlot = slots.GetRange(0, Mathf.Min(settings.frontRowCapacity - 1, slots.Count - 1))
                         .Contains(availableSlots[bestIndex]);
                     mini.isInFrontRow = isFrontRowSlot;
+                    mini.character.emotions.shouldUseParticles = isFrontRowSlot;
                     mini.SetTarget(availableSlots[bestIndex]);
                     availableSlots.RemoveAt(bestIndex);
                 }
