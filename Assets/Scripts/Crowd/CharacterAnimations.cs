@@ -27,6 +27,19 @@ namespace Crowd
             _idleRoutine = StartCoroutine(Idle());
         }
 
+        [Button]
+        public void TriggerWaveBothHands()
+        {
+            animator.SetTrigger("interrupt10");
+        }
+        
+        
+        [Button]
+        public void TriggerWaveSingleHand()
+        {
+            animator.SetTrigger("interrupt6");
+        }
+
         public void LoopWalk()
         {
             _frontNPC = false;
@@ -65,7 +78,7 @@ namespace Crowd
                 case 1:
                     if (!_frontNPC)
                     {
-                        animator.SetTrigger("interrupt2"); // sad
+                        animator.SetTrigger("interrupt2"); // dance
                     }
                     break;
                 case 2:
@@ -77,11 +90,11 @@ namespace Crowd
                 case 4:
                     if (!_frontNPC)
                     {
-                        animator.SetTrigger("interrupt5"); // also not good
+                        animator.SetTrigger("interrupt5"); // sad
                     }
                     break;
                 case 5:
-                    animator.SetTrigger("interrupt6");
+                    animator.SetTrigger("interrupt6"); //wave one hand
                     break;
                 case 6:
                     animator.SetTrigger("interrupt7");
@@ -96,7 +109,7 @@ namespace Crowd
                     }
                     break;
                 case 9:
-                    animator.SetTrigger("interrupt10");
+                    animator.SetTrigger("interrupt10"); //wave both hands
                     break;
             }
 

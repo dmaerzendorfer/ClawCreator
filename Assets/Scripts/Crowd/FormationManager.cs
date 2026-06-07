@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using EditorAttributes;
+using PrimeTween;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -20,7 +22,7 @@ namespace Crowd
         private List<GameObject> despawnPoints;
 
         [SerializeField]
-        private int maxCrowdSize = 2;
+        private int maxCrowdSize = 50;
 
 
         [SerializeField]
@@ -62,7 +64,7 @@ namespace Crowd
                 _avatars.Insert(0, _centerCharacterMovement);
                 //newbiew avatars get better crowd slots
                 _centerCharacterMovement.StartNewbieTimer();
-                //make avatars move into formation
+                //let the characters  move into formation
                 UpdateFormation();
             }
 
@@ -78,7 +80,6 @@ namespace Crowd
 
         void UpdateFormation()
         {
-            //let the characters pop and wait a few sec before they move
 
             //check if we have too many avatars, if so, send the ones in the back to despawn
             if (_avatars.Count > maxCrowdSize)

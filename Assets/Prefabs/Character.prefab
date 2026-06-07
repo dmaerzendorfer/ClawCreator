@@ -17790,6 +17790,7 @@ MonoBehaviour:
     - {fileID: 2100000, guid: d674b9a0364c9554cb799c4656df42b3, type: 2}
     - {fileID: 2100000, guid: 2bfd8a47272ed0546b0b0bff192bebcc, type: 2}
   emotions: {fileID: 4514260950298597180}
+  movementBehaviour: {fileID: 7597235409093587289}
   test_item: {fileID: 11400000, guid: 59387330650c8a240a03671c92d0d3fe, type: 2}
   animations: {fileID: 7951276931435694387}
   hairId: 0

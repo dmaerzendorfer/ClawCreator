@@ -39,6 +39,8 @@ namespace Crowd
         [Header("Emotions")]
         public CharacterEmotions emotions;
 
+        public CharacterMovementBehaviour movementBehaviour;
+
         public ItemSO test_item;
         public CharacterAnimations animations;
 
@@ -68,6 +70,15 @@ namespace Crowd
             color = int.Parse(ColorUtility.ToHtmlStringRGB(_skinMaterial.color),
                 System.Globalization.NumberStyles.HexNumber);
             features.skinRenderers.ForEach(x => x.sharedMaterial = _skinMaterial);
+
+            _gameManager.characterDone.AddListener(() =>
+            {
+                //only do this if we are in the front row
+                if (!movementBehaviour.isInFrontRow) return;
+                if (_gameManager.currentCharacter == this) return;
+                // emotions.TriggerHappyEmote(withParticles: false);
+                animations.TriggerWaveSingleHand();
+            });
         }
 
 

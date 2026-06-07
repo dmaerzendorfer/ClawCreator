@@ -12,7 +12,7 @@ namespace Crowd
         private static readonly int BaseTexture = Shader.PropertyToID("_BaseTexture");
 
         public bool shouldUseParticles = true;
-        
+
         [FoldoutGroup("Emotion Settings", nameof(timeBetweenBlinks), nameof(blinkDuration),
             nameof(timeBetweenHappyEmote),
             nameof(happyEmoteDuration),
@@ -29,7 +29,7 @@ namespace Crowd
 
         [SerializeField, HideProperty] private float happyEmoteDuration = 2f;
         [SerializeField, HideProperty] private ParticleSystem happyParticles;
-        
+
         public Character character;
 
         //emotion related fields
@@ -58,7 +58,7 @@ namespace Crowd
             _blinkSequence.Complete();
         }
 
-        public void TriggerHappyEmote(float? duration = null, bool once = false)
+        public void TriggerHappyEmote(float? duration = null, bool once = false, bool withParticles = true)
         {
             if (_happyEmoteTween.isAlive) _happyEmoteTween.Complete();
 
@@ -66,7 +66,7 @@ namespace Crowd
             _blinkSequence.Stop(); //no blinking while happy
             _happyEmoteSequence.Complete(); //also no random happiness during already being happy
 
-            if (!happyParticles.isPlaying && shouldUseParticles)
+            if (!happyParticles.isPlaying && shouldUseParticles && withParticles)
                 happyParticles.Play(true);
 
             if (currentEyesItem != null)

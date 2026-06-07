@@ -3,6 +3,7 @@ using Crowd;
 using EditorAttributes;
 using PrimeTween;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,13 +13,16 @@ public class GameManager : MonoBehaviour
     public Character currentCharacter;
     public FormationManager formationManager;
 
+    public UnityEvent characterDone;
+
     [Header("ClawSettings")]
     public Claw claw;
+
     public int grabAmounts = 3;
-    
+
     [SerializeField]
     private QrGenerator qrGen;
-    
+
     private int _grabsLeft = 3;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -35,7 +39,7 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
         claw.SetClawText(grabAmounts.ToString());
-        
+
         currentCharacter = formationManager.SpawnNextAvatar().GetComponent<Character>();
     }
 
@@ -61,13 +65,24 @@ public class GameManager : MonoBehaviour
     [Button]
     public void NextCharacter()
     {
-        qrGen.updateQRCode(currentCharacter.hairId, currentCharacter.noseId, currentCharacter.mouthId, currentCharacter.eyeId, currentCharacter.outfitId, currentCharacter.color);
-        currentCharacter = formationManager.SpawnNextAvatar().GetComponent<Character>();
-        
-        //reset grab amount
-        _grabsLeft = grabAmounts;
-        claw.SetClawText(_grabsLeft.ToString());
-        claw.canGrab = true;
+        //first emote
+        currentCharacter.emotions.TriggerHappyEmote(withParticles:true);
         audioManager.PlaySound("Yay");
+        currentCharacter.animations.TriggerWaveBothHands();
+        Tween.Delay(.5f, characterDone.Invoke);
+        
+        //then wait a bit
+        Tween.Delay(2, () =>
+        {
+            //then let characters move
+            //spawn next character
+            qrGen.updateQRCode(currentCharacter.hairId, currentCharacter.noseId, currentCharacter.mouthId,
+                currentCharacter.eyeId, currentCharacter.outfitId, currentCharacter.color);
+            currentCharacter = formationManager.SpawnNextAvatar().GetComponent<Character>();
+            //reset grab amount
+            _grabsLeft = grabAmounts;
+            claw.SetClawText(_grabsLeft.ToString());
+            claw.canGrab = true;
+        });
     }
 }
