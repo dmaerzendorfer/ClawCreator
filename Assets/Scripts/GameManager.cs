@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public int grabAmounts = 3;
     
     [SerializeField]
-    private QRGenerator qrGen;
+    private QrGenerator qrGen;
     
     private int _grabsLeft = 3;
 
