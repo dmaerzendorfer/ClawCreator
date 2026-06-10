@@ -1571,6 +1571,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1510727112528556775, guid: 47ab2cc90a7f18e4084876ae6691db9e, type: 3}
+      propertyPath: formationSettings.baseRadius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510727112528556775, guid: 47ab2cc90a7f18e4084876ae6691db9e, type: 3}
+      propertyPath: formationSettings.rowSpacing
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510727112528556775, guid: 47ab2cc90a7f18e4084876ae6691db9e, type: 3}
+      propertyPath: formationSettings.angleJitter
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510727112528556775, guid: 47ab2cc90a7f18e4084876ae6691db9e, type: 3}
+      propertyPath: formationSettings.radiusJitter
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510727112528556775, guid: 47ab2cc90a7f18e4084876ae6691db9e, type: 3}
+      propertyPath: formationSettings.positionJitter
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3348868334471690812, guid: 47ab2cc90a7f18e4084876ae6691db9e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.6
@@ -5349,6 +5369,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 232213580}
     m_Modifications:
     - target: {fileID: 4528711458581764604, guid: 19171a00b9812be46ad31d4cbda7e285, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4528711458581764604, guid: 19171a00b9812be46ad31d4cbda7e285, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4528711458581764604, guid: 19171a00b9812be46ad31d4cbda7e285, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4528711458581764604, guid: 19171a00b9812be46ad31d4cbda7e285, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.26
       objectReference: {fileID: 0}
@@ -5358,7 +5390,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4528711458581764604, guid: 19171a00b9812be46ad31d4cbda7e285, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15.49
+      value: -22.3
       objectReference: {fileID: 0}
     - target: {fileID: 4528711458581764604, guid: 19171a00b9812be46ad31d4cbda7e285, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5387,6 +5419,10 @@ PrefabInstance:
     - target: {fileID: 4528711458581764604, guid: 19171a00b9812be46ad31d4cbda7e285, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4528711458581764604, guid: 19171a00b9812be46ad31d4cbda7e285, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7732256791493510304, guid: 19171a00b9812be46ad31d4cbda7e285, type: 3}
       propertyPath: m_Name
