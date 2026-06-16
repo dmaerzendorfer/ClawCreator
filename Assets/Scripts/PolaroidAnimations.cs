@@ -1,4 +1,5 @@
 using System;
+using Audio;
 using EditorAttributes;
 using PrimeTween;
 using UnityEngine;
@@ -17,6 +18,12 @@ public class PolaroidAnimations : MonoBehaviour
 
     private Sequence _flyInSequence;
     private Sequence _flyOutSequence;
+    private AudioManager _am;
+
+    private void Start()
+    {
+        _am = AudioManager.Instance;
+    }
 
 
     public void SlideIn()
@@ -28,6 +35,7 @@ public class PolaroidAnimations : MonoBehaviour
 
         fadeSprite.color = new Color(0, 0, 0, 1);
         transform.rotation = Quaternion.Euler(flyOutRotationSettings.startValue);
+        transform.position = flyInPositionSettings.startValue;
         _flyInSequence = Sequence.Create()
             .Group(Tween.Position(transform, flyInPositionSettings))
             .Group(Tween.Custom(fadeInSettings, t =>
@@ -38,8 +46,15 @@ public class PolaroidAnimations : MonoBehaviour
             }));
     }
 
+    public void PlaySound()
+    {
+        _am.PlaySound("Polaroid");
+    }
+
     public void FallOut(Action onComplete = null)
     {
+        PlaySound();
+        
         if (_flyInSequence.isAlive)
         {
             _flyInSequence.Complete();

@@ -9,7 +9,8 @@ namespace Crowd
         public Character character;
         public Vector3 target;
         public float avgSpeed = 3f;
-
+        public AudioSource walkSound;
+        
         [MinMaxSlider(0f, 2f)]
         public Vector2 delayBeforeMove = new Vector2(0f, 1f);
 
@@ -33,6 +34,7 @@ namespace Crowd
             Tween.Delay(delay, () =>
             {
                 target = pos;
+                walkSound.Play();
                 walkingTween = Tween.PositionAtSpeed(transform, target, avgSpeed, Easing.Standard(Ease.InOutSine))
                     .OnUpdate(this, (character, tween) => { character.transform.LookAt(target); }).OnComplete(() =>
                     {
@@ -41,7 +43,7 @@ namespace Crowd
                             Tween.StopAll(gameObject);
                             Destroy(gameObject);
                         }
-
+                        walkSound.Stop();
                         character.RotateTowardsCamera();
                         character.emotions.StartHappySequence();
                         character.animations.LoopIdle();

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Audio.AudioManager
   sounds:
   - name: Background
-    audioResource: {fileID: 8300000, guid: db46598fb17cb874da1ac224dfe97012, type: 3}
+    audioResource: {fileID: 8300000, guid: 6919de6298b8d9743b8fd53ba1b056da, type: 3}
     audioMixerGroup: {fileID: -1483778603309964404, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}
     volume: 1
     randomizePitch: 0
@@ -58,8 +58,8 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: MotorClank
     audioResource: {fileID: 8300000, guid: 1b81de9e1016f4d4d97ecdb5e62be99f, type: 3}
-    audioMixerGroup: {fileID: -1483778603309964404, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}
-    volume: 0.2
+    audioMixerGroup: {fileID: -293188380939491972, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}
+    volume: 1
     randomizePitch: 0
     pitch: 1
     randomPitchRange: {x: 0, y: 0}
@@ -80,7 +80,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Pop
     audioResource: {fileID: 8300000, guid: dc32d5d296a2732489f683c00142f54a, type: 3}
-    audioMixerGroup: {fileID: 1311956056876030632, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}
+    audioMixerGroup: {fileID: -8828282794939030211, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}
     volume: 1
     randomizePitch: 0
     pitch: 1
@@ -113,8 +113,8 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: LeftRight
     audioResource: {fileID: 8300000, guid: a991d950dedc42b4ab7dad3a978d4d82, type: 3}
-    audioMixerGroup: {fileID: 1311956056876030632, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}
-    volume: 0.2
+    audioMixerGroup: {fileID: -8307709389419453984, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}
+    volume: 1
     randomizePitch: 0
     pitch: 1
     randomPitchRange: {x: 0, y: 0}
@@ -122,15 +122,70 @@ MonoBehaviour:
     loop: 1
     playOnAwake: 0
     source: {fileID: 0}
-  - name: UpDown
-    audioResource: {fileID: 8300000, guid: 5ca61fe33d2742444819f271d2e8b3e3, type: 3}
-    audioMixerGroup: {fileID: 1311956056876030632, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}
-    volume: 0.2
+  - name: Up
+    audioResource: {fileID: 8300000, guid: 08982010f5c1f2848ae9415c046f4b8e, type: 3}
+    audioMixerGroup: {fileID: 3924403722639353257, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}
+    volume: 1
     randomizePitch: 0
     pitch: 1
     randomPitchRange: {x: 0, y: 0}
     spatialBlend: 0
     loop: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Down
+    audioResource: {fileID: 8300000, guid: d6b81179d5fbde744a41a7069a3fb306, type: 3}
+    audioMixerGroup: {fileID: 3924403722639353257, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}
+    volume: 1
+    randomizePitch: 0
+    pitch: 1
+    randomPitchRange: {x: 0, y: 0}
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Pop2
+    audioResource: {fileID: 8300000, guid: 507a2861168e2f84ab4eee9340358361, type: 3}
+    audioMixerGroup: {fileID: 3764140345009599848, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}
+    volume: 1
+    randomizePitch: 0
+    pitch: 1
+    randomPitchRange: {x: 0, y: 0}
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Walk
+    audioResource: {fileID: 8300000, guid: b0d222f654735e345a955d1d21220865, type: 3}
+    audioMixerGroup: {fileID: 1972404911462133795, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}
+    volume: 1
+    randomizePitch: 0
+    pitch: 1
+    randomPitchRange: {x: 0, y: 0}
+    spatialBlend: 0
+    loop: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Tada
+    audioResource: {fileID: 8300000, guid: 5238ad3f4fe8d5e4aaee76be4c65c83b, type: 3}
+    audioMixerGroup: {fileID: 7159236494386249676, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}
+    volume: 1
+    randomizePitch: 0
+    pitch: 1
+    randomPitchRange: {x: 0, y: 0}
+    spatialBlend: 0
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Polaroid
+    audioResource: {fileID: 8300000, guid: 718aa27e3c5fcf143ab5d1c78b1a8adc, type: 3}
+    audioMixerGroup: {fileID: 5125060799783706581, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}
+    volume: 1
+    randomizePitch: 0
+    pitch: 1
+    randomPitchRange: {x: 0, y: 0}
+    spatialBlend: 0
+    loop: 0
     playOnAwake: 0
     source: {fileID: 0}
   defaultAudioMixerGroup: {fileID: 1311956056876030632, guid: a86404c0a50e0d846a98c2e9f5281257, type: 2}

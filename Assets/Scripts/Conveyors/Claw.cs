@@ -20,7 +20,7 @@ public class Claw : MonoBehaviour
     [SerializeField] public float timeBetweenAnimation = 0.7f;
     [SerializeField] public float timeExtension = 2f;
     [SerializeField] public float easingStrength = 0.5f;
-    
+
     [Header("Pop Feedback")]
     [SerializeField] public TweenSettings<Vector3> popFeedbackSettings;
 
@@ -50,7 +50,7 @@ public class Claw : MonoBehaviour
     {
         if (_movementVector.x != 0 && !_inAnimation)
             _am.PlaySound("LeftRight");
-        else
+        else if (!_inAnimation)
             _am.StopSound("LeftRight");
 
 
@@ -66,11 +66,12 @@ public class Claw : MonoBehaviour
         if (_popTween.isAlive) _popTween.Complete();
         Tween.Delay(delay).OnComplete(() =>
         {
+            _am.PlaySound("Pop2");
             _popTween = Tween.Scale(transform, popFeedbackSettings)
                 .OnComplete(OnComplete);
         });
     }
-    
+
     public void OnMove(InputAction.CallbackContext context)
     {
         _movementVector = context.ReadValue<Vector2>();
@@ -89,19 +90,31 @@ public class Claw : MonoBehaviour
         {
             return;
         }
+
         if (_movingDown)
         {
+            _am.StopSound("Down");
             _grabSequence.Stop();
             _inAnimation = true;
             _movingDown = false;
             Sequence.Create()
-                .Chain(Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, minAngle), duration: timeBetweenAnimation))
-                .Group(Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, minAngle), duration: timeBetweenAnimation))
+                .Chain(Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, minAngle),
+                    duration: timeBetweenAnimation))
+                .Group(Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, minAngle),
+                    duration: timeBetweenAnimation))
+                .ChainCallback(() => _am.PlaySound("Click"))
+                //go up
+                .ChainCallback(() => _am.PlaySound("Up"))
                 .Chain(Tween.Position(transform,
                     new Vector3(transform.position.x, startPosition.y, transform.position.z),
                     duration: timeBetweenAnimation + 0.5f))
+                .ChainCallback(() => _am.StopSound("Up"))
+
+                //go center
+                .ChainCallback(() => _am.PlaySound("LeftRight"))
                 .Chain(Tween.Position(transform, startPosition, duration: timeBetweenAnimation +
-                                                                          (Mathf.Abs(transform.position.x - 5) / 9) * timeExtension).OnComplete(() =>
+                                                                          (Mathf.Abs(transform.position.x - 5) / 9) *
+                                                                          timeExtension).OnComplete(() =>
                 {
                     DetectBalls();
                     CreateBallSequence();
@@ -110,6 +123,7 @@ public class Claw : MonoBehaviour
                 .Chain(Tween.Scale(transform, new Vector3(0.7f, 0.7f, 0.7f), duration: timeBetweenAnimation))
                 // .Group(ballSequence)
                 // open claw
+                .ChainCallback(() => _am.StopSound("LeftRight"))
                 .Chain(Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, maxAngle),
                     duration: timeBetweenAnimation))
                 .Group(Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, maxAngle),
@@ -121,22 +135,26 @@ public class Claw : MonoBehaviour
                         //     Destroy(capsule.gameObject);
                         // }
                         _capsules.Clear();
+                        _am.StopSound("LeftRight");
                     }))
                 // close claw
                 .Chain(Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, minAngle),
                     duration: timeBetweenAnimation))
                 .Group(Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, minAngle),
                     duration: timeBetweenAnimation))
+
                 // move to foreground
+                .ChainCallback(() => _am.PlaySound("LeftRight"))
                 .Chain(Tween.Scale(transform, new Vector3(1f, 1f, 1f), duration: timeBetweenAnimation)
                     .OnComplete(() =>
                     {
                         _inAnimation = false;
                         _gm.OnGrabComplete();
-                        _am.PlaySound("Click");
+                        _am.StopSound("LeftRight");
                     })
                 );
         }
+
         if (!canGrab) return;
 
         if (_inAnimation) return;
@@ -162,49 +180,72 @@ public class Claw : MonoBehaviour
 
         _movingDown = true;
         _grabSequence = Sequence.Create()
-            // Move down and open claw
+            // Move down and open claw at same time
+            .ChainCallback(() => _am.PlaySound("Down"))
+            .ChainCallback(() => _am.PlaySound("Click"))
             .Group(Tween.Position(transform, grabPosition, duration: timeBetweenAnimation))
-            .Group(Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, maxAngle), duration: timeBetweenAnimation))
-            .Group(Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, maxAngle), duration: timeBetweenAnimation).OnComplete(() => { _movingDown = false; })
+            .Group(Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, maxAngle),
+                duration: timeBetweenAnimation))
+            .Group(Tween
+                .Rotation(rightHinge.transform, Quaternion.Euler(0, 180, maxAngle), duration: timeBetweenAnimation)
+                .OnComplete(() => { _movingDown = false; })
             )
+            .ChainCallback(() => _am.StopSound("Down"))
             // grab stuff
-            .Chain(Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, minAngle), duration: timeBetweenAnimation))
-            .Group(Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, minAngle), duration: timeBetweenAnimation))
+            .Chain(Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, minAngle),
+                duration: timeBetweenAnimation))
+            .Group(Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, minAngle),
+                duration: timeBetweenAnimation))
             // move back up
+            .ChainCallback(() => _am.PlaySound("Up"))
             .Chain(Tween.Position(transform, returnPosition, duration: timeBetweenAnimation + 0.5f))
+            .ChainCallback(() => _am.StopSound("Up"))
             // move to start position
+            .ChainCallback(() =>
+            {
+                _am.PlaySound("LeftRight");
+                Debug.Log("left right sound for movement");
+            })
             .Chain(Tween.Position(transform, startPosition, duration: timeBetweenAnimation +
-                                                                      (Mathf.Abs(transform.position.x - 5) / 9) * timeExtension).OnComplete(() =>
+                                                                      (Mathf.Abs(transform.position.x - 5) / 9) *
+                                                                      timeExtension).OnComplete(() =>
             {
                 DetectBalls();
                 CreateBallSequence();
             }))
+            .ChainCallback(() => _am.PlaySound("LeftRight"))
             // move to bg by scaling
-            .Chain(Tween.Scale(transform, new Vector3(0.7f, 0.7f, 0.7f), duration: timeBetweenAnimation)
-                // .Group(ballSequence)
-                // open claw
-                .Chain(Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, maxAngle), duration: timeBetweenAnimation))
-                .Group(Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, maxAngle), duration: timeBetweenAnimation)
-                    .OnComplete(() =>
-                    {
-                        // foreach (CapsuleScript capsule in _capsules)
-                        // {
-                        //     Destroy(capsule.gameObject);
-                        // }
-                        _capsules.Clear();
-                    }))
-                // close claw
-                .Chain(Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, minAngle), duration: timeBetweenAnimation))
-                .Group(Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, minAngle), duration: timeBetweenAnimation))
-                // move to foreground
-                .Chain(Tween.Scale(transform, new Vector3(1f, 1f, 1f), duration: timeBetweenAnimation))
-                // stop animation lock
+            .Chain(Tween.Scale(transform, new Vector3(0.7f, 0.7f, 0.7f), duration: timeBetweenAnimation))
+            // .Group(ballSequence)
+            // open claw
+            .ChainCallback(() => _am.StopSound("LeftRight"))
+            .Chain(Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, maxAngle),
+                duration: timeBetweenAnimation))
+            .Group(Tween
+                .Rotation(rightHinge.transform, Quaternion.Euler(0, 180, maxAngle), duration: timeBetweenAnimation)
                 .OnComplete(() =>
                 {
-                    _inAnimation = false;
-                    _gm.OnGrabComplete();
-                    _am.PlaySound("Click");
-                }));
+                    // foreach (CapsuleScript capsule in _capsules)
+                    // {
+                    //     Destroy(capsule.gameObject);
+                    // }
+                    _capsules.Clear();
+                }))
+            // close claw
+            .Chain(Tween.Rotation(leftHinge.transform, Quaternion.Euler(0, 0, minAngle),
+                duration: timeBetweenAnimation))
+            .Group(Tween.Rotation(rightHinge.transform, Quaternion.Euler(0, 180, minAngle),
+                duration: timeBetweenAnimation))
+            // move to foreground
+            .ChainCallback(() => _am.PlaySound("LeftRight"))
+            .Chain(Tween.Scale(transform, new Vector3(1f, 1f, 1f), duration: timeBetweenAnimation))
+            // stop animation lock
+            .OnComplete(() =>
+            {
+                _am.StopSound("LeftRight");
+                _inAnimation = false;
+                _gm.OnGrabComplete();
+            });
     }
     //     }
     //     else

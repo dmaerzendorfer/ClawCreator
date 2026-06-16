@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
     {
         //first emote
         currentCharacter.emotions.TriggerHappyEmote(withParticles:true);
-        audioManager.PlaySound("Yay");
+        audioManager.PlaySound("Tada");
         currentCharacter.animations.TriggerWaveBothHands();
         Tween.Delay(.5f, characterDone.Invoke);
         
