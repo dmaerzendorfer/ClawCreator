@@ -61,6 +61,7 @@ namespace Audio
 
             s.source.volume = s.volume;
             s.source.pitch = s.randomizePitch ? Random.Range(s.randomPitchRange.x, s.randomPitchRange.y) : s.pitch;
+            // Debug.Log($"Playing sound {name}.");
             s.source.Play();
         }
         public void StopSound(string name)
@@ -71,6 +72,7 @@ namespace Audio
                 Debug.LogWarning($"Sound with name {name} not found!");
                 return;
             }
+            // Debug.Log($"Stopping sound {name}.");
             s.source.Stop();
         }
 

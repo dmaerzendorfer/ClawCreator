@@ -50,14 +50,17 @@ public class Claw : MonoBehaviour
     {
         if (_movementVector.x != 0 && !_inAnimation)
             _am.PlaySound("LeftRight");
-        else if (!_inAnimation)
-            _am.StopSound("LeftRight");
+        else
+        if (!_inAnimation)
+        _am.StopSound("LeftRight");
 
 
         if (_inAnimation) return;
         Vector2 plannedMovement = _movementVector * (Time.deltaTime * speed);
         if (transform.position.x + plannedMovement.x <= -4) return;
         if (transform.position.x + plannedMovement.x >= 14) return;
+
+        // if (_movementVector.x != 0) _am.PlaySound("LeftRight");
         transform.Translate(plannedMovement, Space.World);
     }
 
