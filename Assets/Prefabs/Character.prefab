@@ -17964,7 +17964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Crowd.CharacterAnimations
   animator: {fileID: 5860797614232586976}
-  timeBetweenIdleAnimations: {x: 5, y: 30}
+  timeBetweenIdleAnimations: {x: 30, y: 100}
   frontTimingMultiplier: 2
 --- !u!1 &9189076534686359458
 GameObject:

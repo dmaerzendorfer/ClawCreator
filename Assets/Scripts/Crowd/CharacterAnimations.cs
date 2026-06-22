@@ -70,6 +70,11 @@ namespace Crowd
                 float multiplier = Mathf.Max(GameManager.GetInstance().formationManager.GetAvatarCount() / 10f, 1f);
                 yield return new WaitForSeconds(Random.Range(timeBetweenIdleAnimations.x * multiplier, timeBetweenIdleAnimations.y * multiplier));
             }
+
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Armature_CL|Idle2 0"))
+            {
+                yield return new WaitForSeconds(Random.Range(timeBetweenIdleAnimations.x, timeBetweenIdleAnimations.y));
+            }
             switch (Random.Range(0, 10))
             {
                 case 0:
