@@ -10,6 +10,8 @@ public class Claw : MonoBehaviour
 {
     [SerializeField] private GameObject leftHinge;
     [SerializeField] private GameObject rightHinge;
+    [SerializeField] private float maxX = 14;
+    [SerializeField] private float minX = -4;
     [SerializeField] private float maxAngle;
     [SerializeField] private float minAngle;
     [SerializeField] private float speed = 1;
@@ -57,8 +59,8 @@ public class Claw : MonoBehaviour
 
         if (_inAnimation) return;
         Vector2 plannedMovement = _movementVector * (Time.deltaTime * speed);
-        if (transform.position.x + plannedMovement.x <= -4) return;
-        if (transform.position.x + plannedMovement.x >= 14) return;
+        if (transform.position.x + plannedMovement.x <= minX) return;
+        if (transform.position.x + plannedMovement.x >= maxX) return;
 
         // if (_movementVector.x != 0) _am.PlaySound("LeftRight");
         transform.Translate(plannedMovement, Space.World);

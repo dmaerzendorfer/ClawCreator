@@ -6718,8 +6718,20 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 866647496038787989, guid: 95326ed057786d74ab1472f4b6940177, type: 3}
+      propertyPath: maxX
+      value: 13.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 866647496038787989, guid: 95326ed057786d74ab1472f4b6940177, type: 3}
+      propertyPath: minX
+      value: -1.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 866647496038787989, guid: 95326ed057786d74ab1472f4b6940177, type: 3}
       propertyPath: timeExtension
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 866647496038787989, guid: 95326ed057786d74ab1472f4b6940177, type: 3}
+      propertyPath: startPosition.x
+      value: 5.14
       objectReference: {fileID: 0}
     - target: {fileID: 866647496038787989, guid: 95326ed057786d74ab1472f4b6940177, type: 3}
       propertyPath: startPosition.y
@@ -6763,7 +6775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8523758184132908404, guid: 95326ed057786d74ab1472f4b6940177, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.14562
+      value: 5.14
       objectReference: {fileID: 0}
     - target: {fileID: 8523758184132908404, guid: 95326ed057786d74ab1472f4b6940177, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7737,7 +7749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8246740913960935722, guid: 3328c2b183a502242babb7c92c7e2f82, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.5
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8246740913960935722, guid: 3328c2b183a502242babb7c92c7e2f82, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7782,6 +7794,18 @@ PrefabInstance:
     - target: {fileID: 8263302445155876681, guid: 3328c2b183a502242babb7c92c7e2f82, type: 3}
       propertyPath: flyOutEndRotationRangeZ.y
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263302445155876681, guid: 3328c2b183a502242babb7c92c7e2f82, type: 3}
+      propertyPath: flyInPositionSettings.endValue.x
+      value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263302445155876681, guid: 3328c2b183a502242babb7c92c7e2f82, type: 3}
+      propertyPath: flyOutPositionSettings.endValue.x
+      value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263302445155876681, guid: 3328c2b183a502242babb7c92c7e2f82, type: 3}
+      propertyPath: flyOutPositionSettings.startValue.x
+      value: -1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
